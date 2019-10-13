@@ -1,0 +1,29 @@
+<div class="fluid-container">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">
+        <img class="header-img" src="../../assets/img/429.png" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngFor="let item of headerItems">
+          <a class="nav-link" [ngClass]="{'active': currentSection==='section'+ item.id}" (click)="scrollTo('section' + item.id)">{{item.name}} </a>
+        </li>        
+      </ul>
+    </div>
+  </nav>
+  <div class="center-content">
+    <div id="parentDiv" scrollSpy [spiedTags]="['DIV']" (sectionChange)="onSectionChange($event)"
+     style="overflow-y: scroll;">
+     <div class="visible-content" *ngFor="let item of headerItems;let ind = index;" id="{{'section' + item.id}}">
+       <section id="s1" *ngIf="ind===0">         
+          <app-section-one></app-section-one>
+       </section>
+       <h1>test{{item.id}}</h1>
+     </div>
+    </div>
+    
+  </div>
+</div>
