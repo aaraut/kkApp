@@ -1,0 +1,91 @@
+.card-container {
+  margin: 20px 20px 0 20px;
+  padding: 20px;
+  border: 1px solid #cccccc;
+  width: 100%;
+  overflow-y: scroll;
+
+  .card-body {
+    box-shadow: 0 0 5px #cccccc;
+  }
+
+  .body-content {
+    display: flex;
+  }
+
+  .img-placeholder {
+    min-width: 50px;
+    max-width: 100px;
+    width: auto;
+    align-self: center;
+  }
+  .img-wrapper {
+    border: 1px solid #aaa;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+  }
+  .add-new {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 75px;
+    right: 75px;
+  }
+
+  .location {
+    display: flex;
+
+    .v-bar {
+      width: 20px;
+      margin-top: 3px;
+    }
+
+    .comp-name {
+      font-weight: bold;
+      text-transform: uppercase;
+      align-self: center;
+    }
+
+    .loc-icon,
+    .company-icon,
+    .ex-icon {
+      align-self: center;
+    }
+
+    .loc-text {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .card-text{
+        font-size: 14px;
+    }
+  }
+  .view-more {
+    font-size: 11px;
+    color: #3b3bf1;
+    text-decoration: underline;
+  }
+  .job-image{
+      width: 100%;
+      height: 100%;
+  }
+  
+}
+.body-wrapper{
+    overflow: auto;
+}
+.cust-table-row{
+    margin: 0;
+
+    .col-4{
+        font-weight: bold;
+    }
+}
+.cust-input-table{
+    input,
+    textarea{
+        width: 100%;
+    }
+}

@@ -2,3 +2,24 @@
 *{
     font-family: 'Raleway', sans-serif;
 }
+app-posting{
+    display: flex;
+    height: 100%;
+}
+
+.custom-scrollbar{
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #666;
+        border-radius: 20px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #ddd;
+        border-radius: 20px;
+    }
+}
+.modal-dialog{
+    max-width: 80%;
+}

@@ -10,12 +10,12 @@ export class ContainerComponent implements OnInit {
     {
       name: 'Home',
       id: 1,
-      redirectTo: '#'
+      redirectTo: '/home'
     },
     {
       name: 'Job Posting',
       id: 2,
-      redirectTo: '#'
+      redirectTo: '/posting'
     },
     {
       name: 'Upcoming Seminars / Training',
