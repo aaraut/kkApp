@@ -10,7 +10,7 @@ export class PostingComponent implements OnInit {
   postDetails:any = [];
   modalRef: BsModalRef;
   imageModalRef: BsModalRef;
-  selectedItem = {};
+  selectedItem:any = {};
   config = {
     backdrop: true,
     ignoreBackdropClick: true

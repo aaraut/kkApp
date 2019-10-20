@@ -2,7 +2,6 @@ import { AppRoutingModule } from './../app-routing.module';
 import { PostingComponent } from './../container/components/posting/posting.component';
 import { HomeComponent } from './../home/home.component';
 import { SectionOneComponent } from './../container/components/section-one/section-one.component';
-import { ScrollSpyDirective } from './scroll-spy.directive';
 import { ContainerComponent } from './../container/container.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
@@ -20,7 +19,7 @@ import { CarouselModule, ModalModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [ContainerComponent, ScrollSpyDirective, SectionOneComponent,HomeComponent,
+  declarations: [ContainerComponent, SectionOneComponent,HomeComponent,
     PostingComponent],
   imports: [
     AngularMaterialModule,

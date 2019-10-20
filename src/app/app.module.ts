@@ -1,5 +1,4 @@
 import { RouterModule } from '@angular/router';
-import { ScrollSpyDirective } from './core/scroll-spy.directive';
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
