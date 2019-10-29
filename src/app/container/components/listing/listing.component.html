@@ -1,0 +1,89 @@
+<div class="card-container fluid-container custom-scrollbar">
+    <div class="row mb-2 mt-2">
+        <div class="col-12 col-md-4  search-input-wrapper">
+            <p class="m-0">Search: </p>
+            <input class="search-input" type="search" [(ngModel)]="query" placeholder="Please enter atleast 3 chars" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-4" *ngFor="let item of listItems |search: query; let i =index;" >
+            <div class="col-md-12 list-item-box">
+                <h3 class="list-tile">{{item?.name }}</h3>
+                <div class="list-content mt-2 mb-2 p-2">
+                    {{item?.companyName}}
+                </div>
+                <div class="list-item-footer">
+                    <div class="li-fo-lhs pr-2">
+                        <h3 class="li-fo-text">Phone Number</h3>
+                        <p class="li-fo-value">{{item?.phoneNumber}}</p>
+                    </div>
+                    <div class="li-fo-rhs pl-2">
+                        <h3 class="li-fo-text">EM@IL ADDRESS</h3>
+                        <p class="li-fo-value">{{item?.emailId}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="add-new" (click)="addNewContact(template)">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 292.377 292.377" style="enable-background:new 0 0 292.377 292.377;" xml:space="preserve">
+            <g>
+                <path style="fill:orange;" d="M146.188,0C65.576,0,0,65.582,0,146.188s65.576,146.188,146.188,146.188
+                   s146.188-65.582,146.188-146.188S226.801,0,146.188,0z M194.962,152.155h-42.806v42.8c0,3.3-2.667,5.967-5.967,5.967
+                   c-3.3,0-5.967-2.667-5.967-5.967v-42.8H97.415c-3.294,0-5.967-2.673-5.967-5.967s2.673-5.967,5.967-5.967h42.806V97.415
+                   c0-3.294,2.667-5.967,5.967-5.967c3.3,0,5.967,2.673,5.967,5.967v42.806h42.806c3.3,0,5.967,2.673,5.967,5.967
+                   S198.261,152.155,194.962,152.155z" />
+            </g>
+        </svg>
+    </div>
+</div>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add New Referance</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Name: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newContact.name" />
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Company Name: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newContact.companyName" />
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Mobile Number: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newContact.phoneNumber" />
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Email: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="email" [(ngModel)]="newContact.emailId" />
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer mt-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="modalRef.hide()">Submit</button>
+        <button type="button" class="btn btn-default mr-2" (click)="modalRef.hide()">Cancel</button>
+    </div>
+</ng-template>

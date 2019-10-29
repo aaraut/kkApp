@@ -2,9 +2,11 @@
 *{
     font-family: 'Raleway', sans-serif;
 }
-app-posting{
+app-posting,
+app-listing{
     display: flex;
     height: 100%;
+    flex: 1;
 }
 
 .custom-scrollbar{

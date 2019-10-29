@@ -1,0 +1,77 @@
+.card-container {
+    margin: 20px 20px 0 20px;
+    padding: 20px;
+    border: 1px solid #cccccc;
+    width: calc(100% - 40px);
+    overflow-y: scroll;
+
+    .list-item-box{
+        border: 1px solid #cccccc;
+        box-shadow: 0 0 2px #cccccc;
+       // background: url('../../../../assets/img/texture.png');
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        .list-tile{
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 30px;
+            font-family: monospace;
+        }
+
+        .list-content {
+            border: 1px solid;
+            border-left: 0;
+            border-right: 0;
+            font-weight: bold;
+        }
+        .list-item-footer{
+            display: flex;
+
+            .li-fo-lhs{
+                border-right: 1px solid;
+                flex: 1;
+            }
+            .li-fo-rhs{
+                flex: 1;
+            }
+
+            .li-fo-text{
+                font-size: 18px;
+                font-family: monospace;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin: 0;
+            }
+            .li-fo-value{
+                margin: 0;
+            }
+        }
+    }
+    .search-input{
+        width: 100%;
+    }
+    .add-new {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        bottom: 75px;
+        right: 75px;
+      }
+    
+}
+.contact-wrapper{
+    display: flex;
+    margin: 10px 0;
+
+    .cw-lhs{
+        min-width: 140px;
+    }
+    .cw-rhs {
+        flex: 1;
+        input{
+            width: 100%;
+            max-width: 280px;
+        }
+    }
+}

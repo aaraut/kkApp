@@ -25,7 +25,7 @@ export class ContainerComponent implements OnInit {
     {
       name: 'Company References',
       id: 4,
-      redirectTo: '#'
+      redirectTo: '/company'
     },
     {
       name: 'Our Story',

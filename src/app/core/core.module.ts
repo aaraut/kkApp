@@ -1,3 +1,4 @@
+import { ListingComponent } from './../container/components/listing/listing.component';
 import { AppRoutingModule } from './../app-routing.module';
 import { PostingComponent } from './../container/components/posting/posting.component';
 import { HomeComponent } from './../home/home.component';
@@ -19,7 +20,7 @@ import { CarouselModule, ModalModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [ContainerComponent, SectionOneComponent,HomeComponent,
+  declarations: [ContainerComponent, SectionOneComponent,HomeComponent,ListingComponent,
     PostingComponent],
   imports: [
     AngularMaterialModule,
@@ -30,7 +31,8 @@ import { FormsModule } from "@angular/forms";
     CarouselModule.forRoot(),
     AppRoutingModule,
     ModalModule.forRoot(),
-    FormsModule
+    FormsModule,
+    FilterPipe
   ],
   exports: [ContainerComponent]
 })
