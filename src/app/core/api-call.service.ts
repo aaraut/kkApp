@@ -12,4 +12,11 @@ export class ApiCallService {
     const url = 'http://www.kolhapuritians.com/api/values';
     return this.http.get(url);
   }
+  callPostApi(url, param) {
+    return this.http.post(url, param);
+  }
+
+  callGetApi(url){
+    return this.http.get(url)
+  }
 }

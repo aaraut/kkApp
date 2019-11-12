@@ -1,0 +1,125 @@
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    max-height: 425px;
+    /* border: 1px solid; */
+    display: flex;
+    height: 100%;
+    flex: 1;
+
+    .row{
+        flex: 1;
+    }
+}
+.login-form-1{
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    height: 100%;
+    padding: 0;
+    flex: 1;
+
+    .lhs-img{
+        flex: 1;
+        justify-content: center;
+        max-width: 100%;
+    }
+}
+.login-form-1 h3{
+    text-align: center;
+}
+.login-form-2{
+    padding: 20px 5%;
+    height: 100%;
+    flex: 2;
+    // background: #0062cc;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3{
+    text-align: center;}
+.login-container form{
+    padding: 1%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+.login-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.login-form-1 .ForgetPwd{
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+.form-option{
+    list-style-type: none;
+    text-align: center;
+
+    .option-item{
+        display: inline-block;
+        padding: 5px;
+        
+        color: #00000070;
+
+        &.active-link{
+            color: rgba(97, 79, 251, 0.9) !important;
+            border-bottom: 2px solid;
+            font-weight: bold;
+        }
+    }
+}
+.twofield-lhs{
+    display: inline-block;
+    width: calc(50% - 12px);
+    margin-right: 20px;
+}
+.twofield-rhs{
+    display: inline-block;
+    width: calc(50% - 12px);
+}
+.invalid{
+    border-color: red;
+}
+.signup-wrapper{
+    position: relative;
+
+    .alert {
+        position: absolute;
+        width: 400px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: -50px;
+
+        p{
+            display: inline-block;
+        }
+    }
+    .reset-icon{
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        color: #a4a4a4;
+        /* font-weight: normal; */
+        font-size: 14px;
+    }
+    .form-group{
+        position: relative;
+    }
+}

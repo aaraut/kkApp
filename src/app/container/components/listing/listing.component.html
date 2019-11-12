@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-4" *ngFor="let item of listItems |search: query; let i =index;" >
+        <div class="col-12 col-md-4" *ngFor="let item of listItems; let i =index;" >
             <div class="col-md-12 list-item-box">
                 <h3 class="list-tile">{{item?.name }}</h3>
                 <div class="list-content mt-2 mb-2 p-2">

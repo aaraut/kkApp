@@ -1,3 +1,4 @@
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,6 +9,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SectionOneComponent } from './container/components/section-one/section-one.component';
 import { PostingComponent } from './container/components/posting/posting.component';
+import { AuthenticationComponent } from './container/components/authentication/authentication.component';
+import { ApproveRejectComponent } from './container/components/approve-reject/approve-reject.component';
 
 @NgModule({
   declarations: [
@@ -15,9 +18,11 @@ import { PostingComponent } from './container/components/posting/posting.compone
     
     
     
+    
   ],
   imports: [
     BrowserModule,
+    AngularMaterialModule,
         CoreModule
     
   ],

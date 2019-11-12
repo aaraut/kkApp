@@ -38,14 +38,14 @@ export class ContainerComponent implements OnInit {
       redirectTo: '#'
     },
     {
-      name: 'Admin',
+      name: 'Login',
       id: 7,
-      redirectTo: '#'
+      redirectTo: '/login'
     },
     {
-      name: '',
+      name: 'Admin',
       id: 8,
-      redirectTo: '#'
+      redirectTo: '/admin'
     }
 
 

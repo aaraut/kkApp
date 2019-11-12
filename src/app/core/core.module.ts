@@ -1,3 +1,5 @@
+import { ApproveRejectComponent } from './../container/components/approve-reject/approve-reject.component';
+import { AuthenticationComponent } from './../container/components/authentication/authentication.component';
 import { ListingComponent } from './../container/components/listing/listing.component';
 import { AppRoutingModule } from './../app-routing.module';
 import { PostingComponent } from './../container/components/posting/posting.component';
@@ -21,7 +23,7 @@ import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [ContainerComponent, SectionOneComponent,HomeComponent,ListingComponent,
-    PostingComponent],
+    PostingComponent, AuthenticationComponent, ApproveRejectComponent],
   imports: [
     AngularMaterialModule,
     BrowserAnimationsModule,
@@ -31,8 +33,7 @@ import { FormsModule } from "@angular/forms";
     CarouselModule.forRoot(),
     AppRoutingModule,
     ModalModule.forRoot(),
-    FormsModule,
-    FilterPipe
+    FormsModule
   ],
   exports: [ContainerComponent]
 })

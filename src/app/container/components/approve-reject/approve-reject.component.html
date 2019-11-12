@@ -1,0 +1,39 @@
+<div class="approv-reject-card custom-scrollbar">
+        <div class="table-responsive-lg">
+                <table class="table">
+                        <caption>List of users</caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">MobileNumber</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Organisation</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">JobPost</th>
+                            <th scope="col">TechnicalSkill</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of tableData">
+                            <th scope="row">{{item?.ID}}</th>
+                            <td>{{item?.Name}}</td>
+                            <td>{{item?.MobileNumber}}</td>
+                            <td>{{item?.Email}}</td>
+                            <td>{{item?.Organisation}}</td>
+                            <td>{{item?.Location}}</td>
+                            <td>{{item?.JobPost}}</td>
+                            <td>{{item?.TechnicalSkill}}</td>
+                            <td>{{item?.Password}}</td>
+                            <td>
+                                <button type="button" *ngIf="item?.ApprovalStatus == false" class="btn btn-success">Approve</button>
+                                <button type="button" *ngIf="item?.ApprovalStatus == true" class="btn btn-danger">Reject</button>
+                            </td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+        </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="container login-container">
+    <div class="row">
+        <div class="login-form-1">
+            <img src="../../../../assets/img/bg-img.jpg" class="lhs-img" />
+        </div>
+        <div class="login-form-2">
+            <div class="form-head">
+                <ul class="form-option">
+                    <li class="option-item mr-2" (click)="formView = 'signup'" [ngClass]="{'active-link': formView == 'signup'}">REGISTER</li>
+                    <li class="option-item ml-2" (click)="formView = 'login'" [ngClass]="{'active-link': formView == 'login'}">LOGIN</li>
+                </ul>
+            </div>
+            <div class="login-wrapper" *ngIf="formView == 'login'">
+                <h3>Welcome!!</h3>
+                <div class="alert alert-danger" *ngIf="loginAttr.error" role="alert">
+                    Please enter valid credentials!
+                </div>
+                <form name="loginForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="email" placeholder="Your Email *" [(ngModel)]="loginAttr.email" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="pwd" class="form-control" placeholder="Your Password *" [(ngModel)]="loginAttr.pwd" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" (click)="login('Login Failed', 'Dismiss')" class="btnSubmit float-right" value="Login" />
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="signup-wrapper" *ngIf="formView == 'signup'">
+                <div class="alert alert-danger" *ngIf="signUpError.errorPresent" role="alert">
+                    <p *ngIf="signUpError.mandate" class="m-0">Please Enter All Mandatory Field</p>
+                    <p *ngIf="signUpError.mismatchpwd" class="m-0">Password Mismatch</p>
+                    <p *ngIf="signUpError.something" class="m-0">Something Went Wrong!</p>
+                    <i class="fa fa-times float-right" (click)="resetFlag()" aria-hidden="true"></i>
+                </div>
+                <form name="signupForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder="Name *" 
+                        [(ngModel)]="signupAttr.name" [ngClass]="{'invalid': signUpError.mandate && signupAttr.name == ''}"/>
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.name = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-lhs">
+                        <input type="text" class="form-control" name="mob" placeholder="Mobile Number *"
+                         [(ngModel)]="signupAttr.mob" [ngClass]="{'invalid': signUpError.mandate && signupAttr.mob == ''}"/>
+                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.mob = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-rhs">
+                        <input type="email" class="form-control" name="emailId" placeholder="Email Id *" 
+                        [(ngModel)]="signupAttr.email" [ngClass]="{'invalid': signUpError.mandate && signupAttr.email == ''}"/>
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.email = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-lhs">
+                        <input type="text" class="form-control" name="oorg" placeholder="Organisation *" 
+                        [(ngModel)]="signupAttr.org" [ngClass]="{'invalid': signUpError.mandate && signupAttr.org == ''}"/>
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.org = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-rhs">
+                        <input type="text" class="form-control" name="loc" placeholder="Location" 
+                        [(ngModel)]="signupAttr.loc" />
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.loc = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-lhs">
+                        <input type="text" class="form-control" name="desc" placeholder="Designation"
+                         [(ngModel)]="signupAttr.desc" />
+                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.desc = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-rhs">
+                        <input type="text" class="form-control" name="area" placeholder="Preferred Technical Field For Guidance"
+                         [(ngModel)]="signupAttr.area"
+                        />
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.area = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-lhs">
+                        <input type="password" name="pwd" class="form-control" placeholder="Your Password *"
+                         [(ngModel)]="signupAttr.pwd" [ngClass]="{'invalid': signUpError.mandate && signupAttr.pwd == ''
+                         || signUpError.mismatchpwd}"/>
+                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.pwd = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-rhs">
+                        <input type="password" name="conpwd" class="form-control" placeholder="Re-enter Password *" 
+                        [(ngModel)]="signupAttr.rpwd" [ngClass]="{'invalid': signUpError.mandate && signupAttr.rpwd == ''
+                    || signUpError.mismatchpwd}"/>
+                    <i class="fa fa-times reset-icon float-right" (click)="signupAttr.rpwd = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit"  (click)="signup()" class="btnSubmit float-right" value="Register" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

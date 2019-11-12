@@ -1,3 +1,5 @@
+import { ApproveRejectComponent } from './container/components/approve-reject/approve-reject.component';
+import { AuthenticationComponent } from './container/components/authentication/authentication.component';
 import { ListingComponent } from './container/components/listing/listing.component';
 import { SectionOneComponent } from './container/components/section-one/section-one.component';
 import { PostingComponent } from './container/components/posting/posting.component';
@@ -10,6 +12,8 @@ const routes: Routes = [
   {path: 'home' , component: SectionOneComponent},
   {path: '' , pathMatch: 'full', redirectTo: 'home'},
   {path: 'company' , component: ListingComponent},
+  {path: 'login' , component: AuthenticationComponent},
+  {path: 'admin' , component: ApproveRejectComponent},
 ];
 
 @NgModule({
