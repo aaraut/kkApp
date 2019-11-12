@@ -19,4 +19,7 @@ export class ApiCallService {
   callGetApi(url){
     return this.http.get(url)
   }
+  callPutApi(url, param){
+    return this.http.put(url, param)
+  }
 }
