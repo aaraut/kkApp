@@ -1,25 +1,25 @@
 <div class="card-container fluid-container custom-scrollbar">
-    <div class="row mb-2 mt-2">
+    <!-- <div class="row mb-2 mt-2">
         <div class="col-12 col-md-4  search-input-wrapper">
             <p class="m-0">Search: </p>
             <input class="search-input" type="search" [(ngModel)]="query" placeholder="Please enter atleast 3 chars" />
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-12 col-md-4" *ngFor="let item of listItems; let i =index;" >
             <div class="col-md-12 list-item-box">
-                <h3 class="list-tile">{{item?.name }}</h3>
+                <h3 class="list-tile">{{item?.Name }}</h3>
                 <div class="list-content mt-2 mb-2 p-2">
-                    {{item?.companyName}}
+                    {{item?.CompanyName}}
                 </div>
                 <div class="list-item-footer">
                     <div class="li-fo-lhs pr-2">
                         <h3 class="li-fo-text">Phone Number</h3>
-                        <p class="li-fo-value">{{item?.phoneNumber}}</p>
+                        <p class="li-fo-value">{{item?.Mobile}}</p>
                     </div>
                     <div class="li-fo-rhs pl-2">
                         <h3 class="li-fo-text">EM@IL ADDRESS</h3>
-                        <p class="li-fo-value">{{item?.emailId}}</p>
+                        <p class="li-fo-value">{{item?.EmailAddress}}</p>
                     </div>
                 </div>
             </div>

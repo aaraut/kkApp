@@ -34,6 +34,7 @@
                     <p *ngIf="signUpError.mandate" class="m-0">Please Enter All Mandatory Field</p>
                     <p *ngIf="signUpError.mismatchpwd" class="m-0">Password Mismatch</p>
                     <p *ngIf="signUpError.something" class="m-0">Something Went Wrong!</p>
+                    <p *ngIf="signUpError.server" class="m-0">This email is already register!</p>
                     <i class="fa fa-times float-right" (click)="resetFlag()" aria-hidden="true"></i>
                 </div>
                 <form name="signupForm">

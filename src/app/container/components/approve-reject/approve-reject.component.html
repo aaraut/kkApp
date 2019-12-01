@@ -1,7 +1,7 @@
 <div class="approv-reject-card custom-scrollbar">
         <div class="table-responsive-lg">
                 <table class="table">
-                        <caption>List of users</caption>
+                      
                         <thead>
                           <tr>
                             <th scope="col">#</th>
@@ -28,8 +28,8 @@
                             <td>{{item?.TechnicalSkill}}</td>
                             <td>{{item?.Password}}</td>
                             <td>
-                                <button type="button" (click)="approve(item?.ID)" *ngIf="item?.ApprovalStatus == false" class="btn mr-2 mb-1 btn-success">Approve</button>
-                                <button type="button"  (click)="reject(item?.ID)" *ngIf="item?.ApprovalStatus == false  " class="btn btn-danger">Reject</button>
+                                <button type="button" (click)="approve(item?.ID)" *ngIf="item?.ApprovalStatus == 'P'" class="btn mr-2 mb-1 btn-success">Approve</button>
+                                <button type="button"  (click)="reject(item?.ID)" *ngIf="item?.ApprovalStatus == 'P'" class="btn btn-danger">Reject</button>
                             </td>
 
                           </tr>

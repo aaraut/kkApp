@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { SessionStorageService } from 'angular-web-storage';
+import { LocalStorageService } from 'angular-web-storage';
 import { ApiCallService } from './../../../core/api-call.service';
 import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material";
@@ -29,22 +32,61 @@ export class AuthenticationComponent implements OnInit {
     mandate: false,
     mismatchpwd: false,
     errorPresent: false,
-    something:false
+    something:false,
+    server:false
   };
-  constructor(private apiCallService: ApiCallService) {}
+  constructor(private apiCallService: ApiCallService, public router: Router,
+              public local: LocalStorageService, public session: SessionStorageService) {}
 
   ngOnInit() {}
 
   login(message: string, action: string) {
-    this.loginAttr.error = true;
+    // tslint:disable-next-line:no-string-literal
+    const url = 'http://www.kolhapuritians.com/api/UserLogin?uName='+ this.loginAttr['email'] + 
+    // tslint:disable-next-line:no-string-literal
+    '&password=' + this.loginAttr['pwd'];
+    this.apiCallService.callGetApi(url).subscribe(data => {
+      console.log('data', data);
+      if(!data["HasErrors"]){
+        this.local.set('token', { isValidUser: 1 }, 1000, 's');
+        if(this.local.get('redirectTo') != undefined){
+          const temp = this.local.get('redirectTo');
+          this.local.remove('redirectTo');
+          this.router.navigate([temp.url])
+          console.log(this.local.get('redirectTo'), 'dsds')
+        } else {
+          this.router.navigate(['/home'])
+        }
+      } else {
+        this.local.remove('token');
+        this.loginAttr.error = true;
+      }
+    }, error => {
+      this.loginAttr.error = true;
+    })
+   // 
   }
 
   signup() {
+    if(this.signupAttr.email!= ''){
+      const tempUrl = 'http://www.kolhapuritians.com/api/Register?value=valid&emailId=' + this.signupAttr.email;
+      this.apiCallService.callGetApi(tempUrl).subscribe(data => {
+        console.log('success', data)
+        this.callRegisterApi();
+      }, error => {
+        this.signUpError.server = true;
+      })
+    }
+    
+  }
+
+  callRegisterApi() {
     this.signUpError = {
       mandate: false,
       mismatchpwd: false,
       errorPresent: false,
-      something:false
+      something:false,
+      server: false
     };
     Object.keys(this.signupAttr).map(
       k => (this.signupAttr[k] = this.signupAttr[k].trim())
@@ -54,11 +96,11 @@ export class AuthenticationComponent implements OnInit {
       this.signupAttr.email == "" ||
       this.signupAttr.org == "" ||
       this.signupAttr.pwd == "" ||
-      this.signupAttr.rpwd == ""
+      this.signupAttr.rpwd == ''
     ) {
       this.signUpError.mandate = true;
       this.signUpError.errorPresent = true;
-    } else if(this.signupAttr.pwd !== this.signupAttr.rpwd){
+    } else if(this.signupAttr.pwd !== this.signupAttr.rpwd) {
       this.signUpError.mismatchpwd = true;
       this.signUpError.errorPresent = true;
     } else {
@@ -77,22 +119,23 @@ export class AuthenticationComponent implements OnInit {
       this.apiCallService.callPostApi(url, param).subscribe(data => {
         console.log('user registered');
         this.signupAttr = {
-          name: "",
-          mob: "",
-          email: "",
-          org: "",
-          loc: "",
-          desc: "",
-          area: "",
-          pwd: "",
-          rpwd: ""
+          name: '',
+          mob: '',
+          email: '',
+          org: '',
+          loc: '',
+          desc: '',
+          area: '',
+          pwd: '',
+          rpwd: ''
         };
-        this.formView = "login";
+        this.formView = 'login';
+        this.router.navigate(['/home']);
       }, error => {
         this.signUpError.something = true;
         this.signUpError.errorPresent = true;
-      })
-      console.log('success')
+      });
+      console.log('success');
 
     }
   }
@@ -101,7 +144,8 @@ export class AuthenticationComponent implements OnInit {
       mandate: false,
       mismatchpwd: false,
       errorPresent: false,
-      something: false
+      something: false,
+      server:false
     };
   }
 }

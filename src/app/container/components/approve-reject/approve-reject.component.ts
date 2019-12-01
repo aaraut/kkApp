@@ -15,14 +15,27 @@ export class ApproveRejectComponent implements OnInit {
     
   }
   getPendingRecords() {
-    const url = 'http://www.kolhapuritians.com/api/register?value=0';
+    const url = 'http://www.kolhapuritians.com/api/register?value=P';
     this.apiCallService.callGetApi(url).subscribe(data => {
       this.tableData = data;
       this.getApprovedRecords();
+      this.getRejectedRecords();
     })
   }
   getApprovedRecords() {
-    const url = 'http://www.kolhapuritians.com/api/register?value=1';
+    const url = 'http://www.kolhapuritians.com/api/register?value=A';
+    this.apiCallService.callGetApi(url).subscribe(data => {
+      const tempdata:any = data;
+      if(tempdata.length > 0){
+        tempdata.map(item => {
+          this.tableData.push(item)
+        })
+      }
+    })
+  }
+
+  getRejectedRecords(){
+    const url = 'http://www.kolhapuritians.com/api/register?value=R';
     this.apiCallService.callGetApi(url).subscribe(data => {
       const tempdata:any = data;
       if(tempdata.length > 0){

@@ -4,7 +4,11 @@
 }
 app-posting,
 app-listing,
-app-approve-reject{
+app-approve-reject,
+app-authentication,
+app-section-one,
+app-under-construction,
+app-traings{
     display: flex;
     height: 100%;
     flex: 1;
@@ -25,4 +29,19 @@ app-approve-reject{
 }
 .modal-dialog{
     max-width: 80%;
+}
+.mat-drawer{
+    visibility:unset !important;
+    left: 65px;
+    border-right: 1px solid #cccccc;
+    width: 65px;
+    background: white;
+
+    &.mat-drawer-opened{
+        width: 200px;
+        left: 0;
+    }
+    .mat-drawer-inner-container{
+        overflow: hidden;
+    }
 }
