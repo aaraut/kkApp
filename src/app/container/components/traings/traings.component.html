@@ -42,7 +42,7 @@
     
     
         </div>
-        <div class="add-new" (click)="addNewContact(template)">
+        <div class="add-new" (click)="addNewTraining(template)">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 292.377 292.377" style="enable-background:new 0 0 292.377 292.377;" xml:space="preserve">
                 <g>
@@ -57,7 +57,7 @@
     </div>
     <ng-template #template>
         <div class="modal-header">
-            <h4 class="modal-title pull-left">Add New Referance</h4>
+            <h4 class="modal-title pull-left">Add New Training</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -65,40 +65,71 @@
         <div class="modal-body">
             <div class="contact-wrapper">
                 <div class="cw-lhs">
-                    <label>Name: </label>
+                    <label>Subject: </label>
                 </div>
                 <div class="cw-rhs">
-                    <input type="text" [(ngModel)]="newContact.name" />
+                    <input type="text" [(ngModel)]="newTraining.Subject" />
                 </div>
             </div>
             <div class="contact-wrapper">
                 <div class="cw-lhs">
-                    <label>Company Name: </label>
+                    <label>Start Date: </label>
                 </div>
                 <div class="cw-rhs">
-                    <input type="text" [(ngModel)]="newContact.companyName" />
+                    <input
+                    class="form-control"
+                    #datepickerFull="bsDatepicker"
+                    bsDatepicker   [(ngModel)]="newTraining.StartDate"                 
+                    [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
                 </div>
             </div>
             <div class="contact-wrapper">
                 <div class="cw-lhs">
-                    <label>Mobile Number: </label>
+                    <label>End Date: </label>
                 </div>
                 <div class="cw-rhs">
-                    <input type="text" [(ngModel)]="newContact.phoneNumber" />
+                    <input
+                    class="form-control"
+                    #datepickerFull="bsDatepicker"
+                    bsDatepicker  [(ngModel)]="newTraining.EndDate"                      
+                    [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
                 </div>
             </div>
             <div class="contact-wrapper">
                 <div class="cw-lhs">
-                    <label>Email: </label>
+                    <label>Duration: </label>
                 </div>
                 <div class="cw-rhs">
-                    <input type="email" [(ngModel)]="newContact.emailId" />
+                    <input type="text" [(ngModel)]="newTraining.Duration" />
                 </div>
             </div>
-    
+            <div class="contact-wrapper">
+                <div class="cw-lhs">
+                    <label>Details: </label>
+                </div>
+                <div class="cw-rhs">
+                    <input type="text" [(ngModel)]="newTraining.Details" />
+                </div>
+            </div>
+            <div class="contact-wrapper">
+                <div class="cw-lhs">
+                    <label>Venue: </label>
+                </div>
+                <div class="cw-rhs">
+                    <input type="text" [(ngModel)]="newTraining.Venue" />
+                </div>
+            </div>
+            <div class="contact-wrapper">
+                <div class="cw-lhs">
+                    <label>Time: </label>
+                </div>
+                <div class="cw-rhs">
+                    <input type="text" [(ngModel)]="newTraining.Time" />
+                </div>
+            </div>
         </div>
         <div class="modal-footer mt-4">
-            <button type="button" class="btn btn-primary mr-2" (click)="modalRef.hide()">Submit</button>
+            <button type="button" class="btn btn-primary mr-2" (click)="saveData()">Submit</button>
             <button type="button" class="btn btn-default mr-2" (click)="modalRef.hide()">Cancel</button>
         </div>
     </ng-template>

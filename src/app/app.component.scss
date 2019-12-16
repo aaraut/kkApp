@@ -99,3 +99,20 @@
         display: none;
     }
   }
+  #loader{
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+    background: #e9eff1f0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+
+    img{
+        width: 150px;
+        height: 150px;
+        margin: auto 0;
+        position: absolute;
+    }
+  }

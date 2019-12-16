@@ -242,7 +242,26 @@
             <input type="text" [(ngModel)]="inputObj.JobTitle" />
         </div>
        </div>
-       <div class="row cust-input-table">
+       <div class="row cust-input-table p-3">
+            <h3>Please select best option</h3>
+            <label class="container">Upload job post image
+                    <input type="radio" value='upload' [(ngModel)]="inputObj.type" name="opt-radio">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container">Fill job details
+                        <input type="radio" [(ngModel)]="inputObj.type" value='fill' name="opt-radio">
+                        <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="row cust-input-table" *ngIf="inputObj.type == 'upload'">
+            <div class="col-4">
+                <p class="table-label">Upload Image</p>
+            </div>
+            <div class="col-8">
+                <input type="file" (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg, .pdf" />
+            </div>
+        </div>
+       <div class="row cust-input-table" *ngIf="inputObj.type == 'fill'">
             <div class="col-4">
                 <p class="table-label">Company Name</p>
             </div>
@@ -250,7 +269,7 @@
                 <input type="text" [(ngModel)]="inputObj.CompanyName" />
             </div>
         </div>
-        <div class="row cust-input-table">
+        <div class="row cust-input-table" *ngIf="inputObj.type == 'fill'">
             <div class="col-4">
                 <p class="table-label">Job Location</p>
             </div>
@@ -258,7 +277,7 @@
                 <input type="text" [(ngModel)]="inputObj.JobLocation" />
             </div>
         </div>
-        <div class="row cust-input-table">
+        <div class="row cust-input-table" *ngIf="inputObj.type == 'fill'">
             <div class="col-4">
                 <p class="table-label">Experience</p>
             </div>
@@ -266,7 +285,7 @@
                 <input type="text" [(ngModel)]="inputObj.Experience" />
             </div>
         </div>
-        <div class="row cust-input-table">
+        <div class="row cust-input-table" *ngIf="inputObj.type == 'fill'">
             <div class="col-4">
                 <p class="table-label">Criteria</p>
             </div>
@@ -274,7 +293,7 @@
                 <input type="text" [(ngModel)]="inputObj.Criteria" />
             </div>
         </div>
-        <div class="row cust-input-table">
+        <div class="row cust-input-table" *ngIf="inputObj.type == 'fill'">
             <div class="col-4">
                 <p class="table-label">Description</p>
             </div>
@@ -282,7 +301,7 @@
              <textarea [(ngModel)]="inputObj.Description"></textarea>
             </div>
         </div>
-        <div class="row cust-input-table">
+        <div class="row cust-input-table" *ngIf="inputObj.type == 'fill'">
             <div class="col-4">
                 <p class="table-label">Contact Details</p>
             </div>
@@ -292,7 +311,7 @@
         </div>
     </div>
     <div class="modal-footer mt-4">
-        <button type="button" class="btn btn-primary mr-2" (click)="modalRef.hide()">Submit</button>
+        <button type="button" class="btn btn-primary mr-2" (click)="saveDetails()">Submit</button>
         <button type="button" class="btn btn-default mr-2" (click)="modalRef.hide()">Cancel</button>
     </div>
 </ng-template>

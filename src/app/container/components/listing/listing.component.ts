@@ -39,5 +39,18 @@ export class ListingComponent implements OnInit {
       this.listItems = data;
     })
   }
+  saveData() {
+    const obj = {
+      name: this.newContact['name'],
+      companyName: this.newContact['companyName'],
+      phoneNumber: this.newContact['phoneNumber'],
+      emailId:this.newContact['emailId']  
+    }
+    const url = 'http://www.kolhapuritians.com/api/references';
+    this.apiCallService.callPostApi(url, obj).subscribe(data => {
+      this.modalRef.hide();
+      this.getReferanceList();
+    })
+  }
 
 }

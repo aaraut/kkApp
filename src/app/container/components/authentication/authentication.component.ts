@@ -47,7 +47,7 @@ export class AuthenticationComponent implements OnInit {
     '&password=' + this.loginAttr['pwd'];
     this.apiCallService.callGetApi(url).subscribe(data => {
       console.log('data', data);
-      if(!data["HasErrors"]){
+      if(data["ReturnResult"]!== 'fail'){
         this.local.set('token', { isValidUser: 1 }, 1000, 's');
         if(this.local.get('redirectTo') != undefined){
           const temp = this.local.get('redirectTo');
@@ -72,7 +72,9 @@ export class AuthenticationComponent implements OnInit {
       const tempUrl = 'http://www.kolhapuritians.com/api/Register?value=valid&emailId=' + this.signupAttr.email;
       this.apiCallService.callGetApi(tempUrl).subscribe(data => {
         console.log('success', data)
-        this.callRegisterApi();
+        if(data['ReturnResult'] == 'Success'){
+          this.callRegisterApi();
+        }
       }, error => {
         this.signUpError.server = true;
       })

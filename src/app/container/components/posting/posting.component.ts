@@ -26,14 +26,30 @@ export class PostingComponent implements OnInit {
     CreatedDate: '',
     PostImage: '',
   }
+  base64textString = [];
   constructor(private apiCallService: ApiCallService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.fetchPosting();
   }
+
+  
+  onUploadChange(evt: any) {
+    const file = evt.target.files[0];
+  
+    if (file) {
+      const reader = new FileReader();
+  
+      reader.onload = this.handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+  
+  handleReaderLoaded(e) {
+    this.base64textString.push(btoa(e.target.result));
+  }
   fetchPosting() {
    this.apiCallService.getPostings().subscribe(data => {
-     console.log('Data', data)
      this.postDetails = data;
    })
   }
@@ -53,5 +69,38 @@ export class PostingComponent implements OnInit {
   }
   getSelectedImage() {
     return 'data:image/gif;base64,' + this.selectedItem['PostImage'];
+  }
+
+  saveDetails() {
+    const url = 'http://www.kolhapuritians.com/api/values';
+    let obj = {};
+    if(this.inputObj['type'] == 'upload'){
+      obj = { 
+        "JobTitle": this.inputObj.JobTitle,
+      "Description":'',
+      "Experince":'',
+      "Criteria":'',
+      "CompanyName":'',
+      "JobLocation":'',
+      "ContactDetails":'',
+      "PostImage": this.base64textString[0]
+    };
+    }else {
+      obj = { 
+        "JobTitle": this.inputObj.JobTitle,
+      "Description":this.inputObj.Description,
+      "Experince":this.inputObj.Experience,
+      "Criteria":this.inputObj.Criteria,
+      "CompanyName":this.inputObj.CompanyName,
+      "JobLocation":this.inputObj.JobLocation,
+      "ContactDetails":this.inputObj.ContactDetails,
+      "PostImage": ''
+    };
+    }
+    
+    this.apiCallService.callPostApi(url, obj).subscribe(data => {
+      this.modalRef.hide();
+      this.fetchPosting();
+    })
   }
 }

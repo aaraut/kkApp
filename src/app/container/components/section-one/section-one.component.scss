@@ -1,9 +1,64 @@
 .c-wrapper{
-    max-height: 400px;
+    // max-height: 400px;
     
 }
+.setion1-wrapper{
+    overflow: auto;
+
+    .cw-wrapper{
+        padding: 90px 0 10px;
+
+        h3{
+            text-align: center;
+            font-size: 54px;
+        }
+
+        .carousel-item{
+            .item.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+            }
+        }
+
+        
+        .carousel-caption{
+            width: 100%;
+            flex: 1;
+            margin-top: 12px;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+        }
+        .icon-prev,
+        .icon-next{
+            background-color: #a5a5a5;
+            padding: 16px;
+        }
+    }
+}
 .carousel-item{
-    height: 400px;
+    // height: 415px;
+
+    .item.active {
+        height: 100%;
+        
+    }
+    .carousel-caption{
+        position: relative;
+        background: #a4a4a4;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 15px 0;
+
+        p{
+            margin: 0;
+        }
+    }
 }
 .setion1-wrapper{
     width: 100%;

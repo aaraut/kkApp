@@ -20,7 +20,7 @@ import { RouterModule } from '@angular/router';
 
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
-import { CarouselModule, ModalModule } from "ngx-bootstrap";
+import { CarouselModule, ModalModule, BsDatepickerModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
 
 @NgModule({
@@ -33,6 +33,7 @@ import { FormsModule } from "@angular/forms";
     HttpClientModule,
     BsDropdownModule.forRoot(),
     CarouselModule.forRoot(),
+    BsDatepickerModule.forRoot(),
 
     ModalModule.forRoot(),
     FormsModule

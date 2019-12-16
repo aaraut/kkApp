@@ -1,3 +1,4 @@
+import { LoaderInterceptor } from './app.interceptor';
 import { AuthGuardService } from './core/route-guards';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { RouterModule } from '@angular/router';
@@ -15,20 +16,20 @@ import { AuthenticationComponent } from './container/components/authentication/a
 import { ApproveRejectComponent } from './container/components/approve-reject/approve-reject.component';
 import { UnderConstructionComponent } from './container/components/under-construction/under-construction.component';
 import { TraingsComponent } from './container/components/traings/traings.component';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 @NgModule({
-  declarations: [
-    AppComponent,
-    
-    
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AngularMaterialModule,
     CoreModule,
     AngularWebStorageModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
-  providers: [AuthGuardService],
+  providers: [
+    AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
