@@ -8,4 +8,31 @@
     .btn{
         min-width: 100px;
     }
+
+    .tab-wrapper{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        
+        .th-list{
+            padding: 0;
+            margin: 0;
+            list-style-type: none;   
+        }
+        .th-item{
+            display: inline-block;
+            padding: 5px 15px;
+            border: 1px solid #ccc;
+            &.active{
+                background: #c6c6f3;
+            }
+        }
+
+        .tab-content{
+            border: 1px solid #ccc;
+            height: 100%;
+            flex: 1;
+            padding: 10px;
+        }
+    }
 }

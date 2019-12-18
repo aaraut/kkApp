@@ -2,7 +2,7 @@ import { TemplateRef } from '@angular/core';
 import { ApiCallService } from './../../../core/api-call.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Component, OnInit } from '@angular/core';
-
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-traings',
   templateUrl: './traings.component.html',
@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TraingsComponent implements OnInit {
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService, private apiCallService: ApiCallService) { }
+  constructor(private modalService: BsModalService, private apiCallService: ApiCallService, private _snackBar: MatSnackBar) { }
   list:any =[];
   config = {
     backdrop: true,
@@ -33,6 +33,8 @@ export class TraingsComponent implements OnInit {
     this.apiCallService.callGetApi(url).subscribe(data => {
       console.log('trainings', data)
       this.list= data;
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
   }
   addNewTraining(template: TemplateRef<any>){
@@ -52,6 +54,14 @@ export class TraingsComponent implements OnInit {
     this.apiCallService.callPostApi(url, obj).subscribe(data => {
       this.modalRef.hide();
       this.getAllList();
+      this.openSnackBar('Training Added Successfully!', 'OK');
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

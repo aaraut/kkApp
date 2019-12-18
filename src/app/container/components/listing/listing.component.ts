@@ -2,6 +2,7 @@ import { ApiCallService } from './../../../core/api-call.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { TemplateRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-listing',
@@ -22,7 +23,7 @@ export class ListingComponent implements OnInit {
     emailId:''    
   }
   listItems:any = []
-  constructor(private modalService: BsModalService, private apiCallService: ApiCallService) { }
+  constructor(private modalService: BsModalService, private apiCallService: ApiCallService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getReferanceList();
@@ -37,6 +38,8 @@ export class ListingComponent implements OnInit {
     this.apiCallService.callGetApi(url).subscribe(data => {
       console.log('data', data);
       this.listItems = data;
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
   }
   saveData() {
@@ -50,7 +53,15 @@ export class ListingComponent implements OnInit {
     this.apiCallService.callPostApi(url, obj).subscribe(data => {
       this.modalRef.hide();
       this.getReferanceList();
+      this.openSnackBar('Referance Added Successfully!', 'OK');
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

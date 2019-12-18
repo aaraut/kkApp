@@ -1,6 +1,7 @@
 import { ApiCallService } from './../../../core/api-call.service';
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-posting',
   templateUrl: './posting.component.html',
@@ -25,9 +26,10 @@ export class PostingComponent implements OnInit {
     ContactDetails: '',
     CreatedDate: '',
     PostImage: '',
+    type:'fill'
   }
   base64textString = [];
-  constructor(private apiCallService: ApiCallService, private modalService: BsModalService) { }
+  constructor(private apiCallService: ApiCallService, private modalService: BsModalService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.fetchPosting();
@@ -51,7 +53,9 @@ export class PostingComponent implements OnInit {
   fetchPosting() {
    this.apiCallService.getPostings().subscribe(data => {
      this.postDetails = data;
-   })
+   }, error => {
+    this.openSnackBar('Something went wrong!', 'OK');
+  })
   }
   addNewPost(template: TemplateRef<any>){
     this.modalRef = this.modalService.show(template, this.config);
@@ -72,7 +76,7 @@ export class PostingComponent implements OnInit {
   }
 
   saveDetails() {
-    const url = 'http://www.kolhapuritians.com/api/values';
+    const url = 'http://www.kolhapuritians.com/api/jobposting';
     let obj = {};
     if(this.inputObj['type'] == 'upload'){
       obj = { 
@@ -101,6 +105,14 @@ export class PostingComponent implements OnInit {
     this.apiCallService.callPostApi(url, obj).subscribe(data => {
       this.modalRef.hide();
       this.fetchPosting();
+      this.openSnackBar('Job Post Added Successfully!', 'OK');
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

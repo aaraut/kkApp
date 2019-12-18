@@ -49,7 +49,12 @@ export class AuthenticationComponent implements OnInit {
       console.log('data', data);
       if(data["ReturnResult"]!== 'fail'){
         this.local.set('token', { isValidUser: 1 }, 1000, 's');
-        if(this.local.get('redirectTo') != undefined){
+        console.log('dsdsdsd',this.local.get('redirectTo'))
+        this.local.set('admin', { isAdmin: data['IsAdmin'] }, 1000, 's')
+        const tempVar = this.local.get('redirectTo');
+        console.log('tempVar', tempVar)
+        if(tempVar != undefined && tempVar != null && 
+          tempVar.url !== "/login"){
           const temp = this.local.get('redirectTo');
           this.local.remove('redirectTo');
           this.router.navigate([temp.url])
@@ -59,6 +64,7 @@ export class AuthenticationComponent implements OnInit {
         }
       } else {
         this.local.remove('token');
+        this.local.remove('admin');
         this.loginAttr.error = true;
       }
     }, error => {

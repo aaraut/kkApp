@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { ApiCallService } from './../../../core/api-call.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApproveRejectComponent implements OnInit {
   tableData: any = [];
-  constructor(private apiCallService: ApiCallService) { }
+  allTableData = [];
+  isActive = 'p';
+  constructor(private apiCallService: ApiCallService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getPendingRecords();
@@ -18,8 +21,10 @@ export class ApproveRejectComponent implements OnInit {
     const url = 'http://www.kolhapuritians.com/api/register?value=P';
     this.apiCallService.callGetApi(url).subscribe(data => {
       this.tableData = data;
-      this.getApprovedRecords();
-      this.getRejectedRecords();
+      // this.getApprovedRecords();
+      // this.getRejectedRecords();
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
   }
   getApprovedRecords() {
@@ -28,9 +33,11 @@ export class ApproveRejectComponent implements OnInit {
       const tempdata:any = data;
       if(tempdata.length > 0){
         tempdata.map(item => {
-          this.tableData.push(item)
+          this.allTableData.push(item)
         })
       }
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
   }
 
@@ -40,9 +47,11 @@ export class ApproveRejectComponent implements OnInit {
       const tempdata:any = data;
       if(tempdata.length > 0){
         tempdata.map(item => {
-          this.tableData.push(item)
+          this.allTableData.push(item)
         })
       }
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
   }
 
@@ -60,10 +69,14 @@ export class ApproveRejectComponent implements OnInit {
       TechnicalSkill: obj[0].TechnicalSkill,
       Organisation: obj[0].Organisation,
       Password: obj[0].Password,
-      ApprovalStatus: 1
+      ApprovalStatus: 'A',
+      IsAdmin: obj[0].IsAdmin
     };
     this.apiCallService.callPutApi(url, param).subscribe(data => {
       this.getPendingRecords();
+      this.openSnackBar('User Approved Successfully', 'OK');
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
   }
   reject(id){
@@ -80,10 +93,32 @@ export class ApproveRejectComponent implements OnInit {
       TechnicalSkill: obj[0].TechnicalSkill,
       Organisation: obj[0].Organisation,
       Password: obj[0].Password,
-      ApprovalStatus: 2
+      ApprovalStatus: 'R'
     };
     this.apiCallService.callPutApi(url, param).subscribe(data => {
       this.getPendingRecords();
+      this.openSnackBar('User Rejected Successfully', 'OK');
+    }, error => {
+      this.openSnackBar('Something went wrong!', 'OK');
     })
+  }
+  itemClicked(state){
+    console.log('state', state)
+    this.isActive = state;
+    this.allTableData = [];
+    this.tableData = [];
+
+    if(state == 'p'){
+      this.getPendingRecords();
+    } else {
+      this.getApprovedRecords();
+      this.getRejectedRecords();
+    }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

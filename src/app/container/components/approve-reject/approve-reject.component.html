@@ -1,39 +1,88 @@
 <div class="approv-reject-card custom-scrollbar">
+  <div class="tab-wrapper">
+    <div class="tab-header">
+      <ul class="th-list">
+        <li class="th-item" (click)="itemClicked('p')" [ngClass]="{'active': isActive == 'p'}">Pending Request</li>
+        <li class="th-item" (click)="itemClicked('a')" [ngClass]="{'active': isActive == 'a'}">Approve/Rejected Request</li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-content-wrapper" *ngIf="isActive == 'p'">
         <div class="table-responsive-lg">
-                <table class="table">
-                      
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">MobileNumber</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Organisation</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">JobPost</th>
-                            <th scope="col">TechnicalSkill</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let item of tableData">
-                            <th scope="row">{{item?.ID}}</th>
-                            <td>{{item?.Name}}</td>
-                            <td>{{item?.MobileNumber}}</td>
-                            <td>{{item?.Email}}</td>
-                            <td>{{item?.Organisation}}</td>
-                            <td>{{item?.Location}}</td>
-                            <td>{{item?.JobPost}}</td>
-                            <td>{{item?.TechnicalSkill}}</td>
-                            <td>{{item?.Password}}</td>
-                            <td>
-                                <button type="button" (click)="approve(item?.ID)" *ngIf="item?.ApprovalStatus == 'P'" class="btn mr-2 mb-1 btn-success">Approve</button>
-                                <button type="button"  (click)="reject(item?.ID)" *ngIf="item?.ApprovalStatus == 'P'" class="btn btn-danger">Reject</button>
-                            </td>
+          <table class="table">
 
-                          </tr>
-                        </tbody>
-                      </table>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">MobileNumber</th>
+                <th scope="col">Email</th>
+                <th scope="col">Organisation</th>
+                <th scope="col">Location</th>
+                <th scope="col">JobPost</th>
+                <th scope="col">TechnicalSkill</th>
+                <th scope="col">IsAdmin</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of tableData">
+                <td>{{item?.Name}}</td>
+                <td>{{item?.MobileNumber}}</td>
+                <td>{{item?.Email}}</td>
+                <td>{{item?.Organisation}}</td>
+                <td>{{item?.Location}}</td>
+                <td>{{item?.JobPost}}</td>
+                <td>{{item?.TechnicalSkill}}</td>
+                <td>
+                  <input type="checkbox" [(ngModel)]="item.IsAdmin" />
+                </td>
+                <td>
+                  <button type="button" (click)="approve(item?.ID)" *ngIf="item?.ApprovalStatus == 'P'" class="btn mr-2 mb-1 btn-success">Approve</button>
+                  <button type="button" (click)="reject(item?.ID)" *ngIf="item?.ApprovalStatus == 'P'" class="btn btn-danger">Reject</button>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+      <div class="tab-content-wrapper" *ngIf="isActive == 'a'">
+          <div class="table-responsive-lg">
+              <table class="table">
+    
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">MobileNumber</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Organisation</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">JobPost</th>
+                    <th scope="col">TechnicalSkill</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">IsAdmin</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of allTableData">
+                    <td>{{item?.Name}}</td>
+                    <td>{{item?.MobileNumber}}</td>
+                    <td>{{item?.Email}}</td>
+                    <td>{{item?.Organisation}}</td>
+                    <td>{{item?.Location}}</td>
+                    <td>{{item?.JobPost}}</td>
+                    <td>{{item?.TechnicalSkill}}</td>
+                    <td>{{item?.Password}}</td>
+                    <td>
+                      {{item?.IsAdmin == true ? 'Yes' : 'No'}}
+                    </td>
+    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+      </div>
+    </div>
+  </div>
+
 </div>
