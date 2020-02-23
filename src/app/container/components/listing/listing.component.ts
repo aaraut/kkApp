@@ -53,6 +53,12 @@ export class ListingComponent implements OnInit {
     this.apiCallService.callPostApi(url, obj).subscribe(data => {
       this.modalRef.hide();
       this.getReferanceList();
+      this.newContact = {
+        name: '',
+        companyName: '',
+        phoneNumber: '',
+        emailId:''
+      }
       this.openSnackBar('Referance Added Successfully!', 'OK');
     }, error => {
       this.openSnackBar('Something went wrong!', 'OK');

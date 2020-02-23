@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class PostingComponent implements OnInit {
   postDetails:any = [];
+  
   modalRef: BsModalRef;
   imageModalRef: BsModalRef;
   selectedItem:any = {};
@@ -26,7 +27,7 @@ export class PostingComponent implements OnInit {
     ContactDetails: '',
     CreatedDate: '',
     PostImage: '',
-    type:'fill'
+    type:'upload'
   }
   base64textString = [];
   constructor(private apiCallService: ApiCallService, private modalService: BsModalService, private _snackBar: MatSnackBar) { }
@@ -105,6 +106,19 @@ export class PostingComponent implements OnInit {
     this.apiCallService.callPostApi(url, obj).subscribe(data => {
       this.modalRef.hide();
       this.fetchPosting();
+      this.inputObj = {
+        JobTitle: '',
+        CompanyName: '',
+        JobLocation: '',
+        Experience: '',
+        Criteria: '',
+        Description: '',
+        ContactDetails: '',
+        CreatedDate: '',
+        PostImage: '',
+        type:'upload'
+      }
+      this.base64textString = [];
       this.openSnackBar('Job Post Added Successfully!', 'OK');
     }, error => {
       this.openSnackBar('Something went wrong!', 'OK');

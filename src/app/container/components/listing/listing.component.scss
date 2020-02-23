@@ -28,12 +28,24 @@
         .list-item-footer{
             display: flex;
 
+            @media (max-width: 992px) {
+                flex-direction: column;
+              }
+
             .li-fo-lhs{
                 border-right: 1px solid;
                 flex: 1;
+
+                @media (max-width: 992px) {
+                    border-right: none;
+                  }
             }
             .li-fo-rhs{
                 flex: 1;
+
+                @media (max-width: 992px) {
+                    padding-left: 0 !important;
+                  }
             }
 
             .li-fo-text{

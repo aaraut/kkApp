@@ -54,6 +54,15 @@ export class TraingsComponent implements OnInit {
     this.apiCallService.callPostApi(url, obj).subscribe(data => {
       this.modalRef.hide();
       this.getAllList();
+      this.newTraining = {
+        Subject: '',
+        StartDate: '',
+        EndDate: '',
+        Duration: '',
+        Details: '',
+        Venue: '',
+        Time: ''
+      }
       this.openSnackBar('Training Added Successfully!', 'OK');
     }, error => {
       this.openSnackBar('Something went wrong!', 'OK');

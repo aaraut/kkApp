@@ -18,6 +18,10 @@
     padding: 0;
     flex: 1;
 
+    @media (max-width: 575px) {
+        display: none;
+      }
+
     .lhs-img{
         flex: 1;
         justify-content: center;
@@ -33,6 +37,10 @@
     flex: 2;
     // background: #0062cc;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+
+    @media (max-width: 575px) {
+        overflow-y: auto;
+      }
 }
 .login-form-2 h3{
     text-align: center;}
@@ -88,10 +96,18 @@
     display: inline-block;
     width: calc(50% - 12px);
     margin-right: 20px;
+
+    @media (max-width: 575px) {
+        width: calc(100%);
+      }
 }
 .twofield-rhs{
     display: inline-block;
     width: calc(50% - 12px);
+
+    @media (max-width: 575px) {
+        width: calc(100%);
+      }
 }
 .invalid{
     border-color: red;

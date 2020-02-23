@@ -5,6 +5,11 @@
 .setion1-wrapper{
     overflow: auto;
 
+    .top-section{
+        height: 270px;
+        background: #2b2b3e;
+    }
+
     .cw-wrapper{
         padding: 90px 0 10px;
 
@@ -12,7 +17,9 @@
             text-align: center;
             font-size: 54px;
         }
-
+        .carousel-indicators {
+            display: none;
+        }
         .carousel-item{
             .item.active {
                 display: flex;
