@@ -1,0 +1,26 @@
+// .container {
+//   height: 3000px;
+// }
+
+.navbar {
+  height: 80px;
+  width: 100%;
+}
+
+.content {
+  margin-top: 80px;
+}
+@media (max-width: 1199px) {
+  .navbar-brand{
+    width: calc(100% - 72px);
+  }
+  #navbarTogglerDemo03{
+    background: #343a40!important;
+  }
+  .nav-item{
+    padding: 10px 20px;
+  }
+  .btn-outline-success{
+    margin-left: 20px;
+  }
+}

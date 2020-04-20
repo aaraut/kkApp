@@ -120,3 +120,14 @@
         position: absolute;
     }
   }
+
+  .main-wrap{
+    display: flex;
+    flex-direction: column;
+
+    .content-wrap{
+        flex: 1;
+        min-height: 300px;
+    }
+
+  }

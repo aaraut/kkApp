@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { TraingsComponent } from './container/components/traings/traings.component';
 import { UnderConstructionComponent } from './container/components/under-construction/under-construction.component';
 import { ApproveRejectComponent } from './container/components/approve-reject/approve-reject.component';
@@ -13,7 +14,7 @@ import {
 
 const routes: Routes = [
   {path: 'posting' , component: PostingComponent, canActivate: [AuthGuard] },
-  {path: 'home' , component: SectionOneComponent },
+  {path: 'home' , component: HomeComponent },
   {path: '' , pathMatch: 'full', redirectTo: 'home'},
   {path: 'company' , component: ListingComponent, canActivate: [AuthGuard] },
   {path: 'seminar' , component: TraingsComponent, canActivate: [AuthGuard] },

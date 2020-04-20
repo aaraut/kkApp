@@ -17,18 +17,22 @@ import { ApproveRejectComponent } from './container/components/approve-reject/ap
 import { UnderConstructionComponent } from './container/components/under-construction/under-construction.component';
 import { TraingsComponent } from './container/components/traings/traings.component';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HeaderComponent } from './common/header/header.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AngularMaterialModule,
+
     CoreModule,
     AngularWebStorageModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     AuthGuardService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    
   ],
   bootstrap: [AppComponent]
 })
