@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material';
 })
 export class TraingsComponent implements OnInit {
   modalRef: BsModalRef;
+  trainingDetailsModalRef: BsModalRef;
+  selectedItem: any = {};
   constructor(private modalService: BsModalService, private apiCallService: ApiCallService, private _snackBar: MatSnackBar) { }
   list:any =[];
   config = {
@@ -72,5 +74,23 @@ export class TraingsComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+  getItemDetails(item){
+    if(item.length > 50){
+      return item.substring(0, 50) + '...';
+    }
+    return item;
+  }
+  getDate(dte){
+    if(dte.indexOf('T') === -1){
+      return dte;
+    }
+    const ind = dte.indexOf('T');
+    return dte.substring(0, ind);
+  }
+  showPopUp(template, item) {
+    this.selectedItem = item;
+    console.log('this.selectedItem', this.selectedItem)
+    this.trainingDetailsModalRef = this.modalService.show(template, this.config);
   }
 }

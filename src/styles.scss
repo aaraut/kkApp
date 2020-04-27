@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 *{
-    font-family: 'Raleway', sans-serif;
+    font-family: sans-serif;
 }
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 app-posting,
@@ -13,6 +13,7 @@ app-traings{
     display: flex;
     height: 100%;
     flex: 1;
+    flex-direction: column;
 }
 
 .custom-scrollbar{

@@ -1,11 +1,209 @@
-<div class="card-container fluid-container custom-scrollbar">
+<div class="page-wrapper">
+    <div class="banner-overlay"></div>
+    <div class="page-banner">
+
+    </div>
+    <div class="baner-caption rotate">
+        <h1>LEARNING SOLUTION WITHIN CLICKS</h1>
+    </div>
+</div>
+<div class="section-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4 post-block" *ngFor="let item of list;let i = index;">
+                <div class="item-wrap">
+                    <div class="logo-part">
+                        <span class="logo-wrap">
+                                <img src="./assets/img/v2/t1.jpg" *ngIf="i %2 == 0" class="job-image" />
+                                <img src="./assets/img/v2/t2.jpg" *ngIf="i %2 != 0" class="job-image" />
+                        </span>
+                        <div class="date-block">
+                            <div class="date-lhs">
+                                <p class="d-text">Start Date</p>
+                                <p class="d-val">{{getDate(item?.StartDate)}}</p>
+                            </div>
+                            <div class="date-rhs">
+                                <p class="d-text">End Date</p>
+                                <p class="d-val">{{getDate(item?.EndDate)}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-part mt-4" >
+                        <h4 class="mt-2">{{item?.Subject}}</h4>
+
+                        <p class="content-desc">{{getItemDetails(item?.Details)}}</p>
+                    </div>
+                    <div class="content-footer">
+                        <p><span class="ft-text">Location: </span> 
+                            <span class="ft-val">{{item?.Venue}}</span></p>
+                            <a class="view-details" (click)="showPopUp(trainingDetailsModalTemplate, item)">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="add-new" (click)="addNewTraining(template)">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 292.377 292.377" style="enable-background:new 0 0 292.377 292.377;" xml:space="preserve">
+            <g>
+                <path style="fill:orange;" d="M146.188,0C65.576,0,0,65.582,0,146.188s65.576,146.188,146.188,146.188
+               s146.188-65.582,146.188-146.188S226.801,0,146.188,0z M194.962,152.155h-42.806v42.8c0,3.3-2.667,5.967-5.967,5.967
+               c-3.3,0-5.967-2.667-5.967-5.967v-42.8H97.415c-3.294,0-5.967-2.673-5.967-5.967s2.673-5.967,5.967-5.967h42.806V97.415
+               c0-3.294,2.667-5.967,5.967-5.967c3.3,0,5.967,2.673,5.967,5.967v42.806h42.806c3.3,0,5.967,2.673,5.967,5.967
+               S198.261,152.155,194.962,152.155z" />
+            </g>
+        </svg>
+    </div>
+</div>
+<ng-template #trainingDetailsModalTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{selectedItem?.Subject}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="trainingDetailsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        
+        <div class="body-wrapper custom-scrollbar">
+            <div class="row cust-table-row">
+                <div class="col-4">
+                    <p class="table-label">Description</p>
+                </div>
+                <div class="col-8">
+                    <p class="table-value">{{selectedItem?.Details}}</p>
+                </div>
+            </div>
+            <div class="row cust-table-row">
+                <div class="col-4">
+                    <p class="table-label">Start Date</p>
+                </div>
+                <div class="col-8">
+                    <p class="table-value">{{selectedItem?.StartDate}}</p>
+                </div>
+            </div>
+            <div class="row cust-table-row">
+                <div class="col-4">
+                    <p class="table-label">End Date</p>
+                </div>
+                <div class="col-8">
+                    <p class="table-value">{{selectedItem?.EndDate}}</p>
+                </div>
+            </div>
+            <div class="row cust-table-row">
+                <div class="col-4">
+                    <p class="table-label">Time</p>
+                </div>
+                <div class="col-8">
+                    <p class="table-value">{{selectedItem?.Time}}</p>
+                </div>
+            </div>
+            <div class="row cust-table-row">
+                <div class="col-4">
+                    <p class="table-label">Duration</p>
+                </div>
+                <div class="col-8">
+                    <p class="table-value">{{selectedItem?.Duration}}</p>
+                </div>
+            </div>
+            <div class="row cust-table-row">
+                <div class="col-4">
+                    <p class="table-label">Venue</p>
+                </div>
+                <div class="col-8">
+                    <p class="table-value">{{selectedItem?.Venue}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Add New Training</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Subject: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newTraining.Subject" />
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Start Date: </label>
+            </div>
+            <div class="cw-rhs">
+                <input
+                class="form-control"
+                #datepickerFull="bsDatepicker"
+                bsDatepicker   [(ngModel)]="newTraining.StartDate"                 
+                [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>End Date: </label>
+            </div>
+            <div class="cw-rhs">
+                <input
+                class="form-control"
+                #datepickerFull="bsDatepicker"
+                bsDatepicker  [(ngModel)]="newTraining.EndDate"                      
+                [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Duration: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newTraining.Duration" />
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Details: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newTraining.Details" />
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Venue: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newTraining.Venue" />
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>Time: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newTraining.Time" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer mt-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="saveData()">Submit</button>
+        <button type="button" class="btn btn-default mr-2" (click)="modalRef.hide()">Cancel</button>
+    </div>
+</ng-template>
+
+<!-- <div class="card-container fluid-container custom-scrollbar"> -->
         <!-- <div class="row mb-2 mt-2">
             <div class="col-12 col-md-4  search-input-wrapper">
                 <p class="m-0">Search: </p>
                 <input class="search-input" type="search" [(ngModel)]="query" placeholder="Please enter atleast 3 chars" />
             </div>
         </div> -->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12 col-md-4 mb-2" *ngFor="let item of list; let i =index;" >
                 <div class="col-md-12 list-item-box">
                     <h3 class="list-tile">{{item?.Subject }}</h3>
@@ -41,8 +239,8 @@
             </div>
     
     
-        </div>
-        <div class="add-new" (click)="addNewTraining(template)">
+        </div> -->
+        <!-- <div class="add-new" (click)="addNewTraining(template)">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 292.377 292.377" style="enable-background:new 0 0 292.377 292.377;" xml:space="preserve">
                 <g>
@@ -53,9 +251,9 @@
                        S198.261,152.155,194.962,152.155z" />
                 </g>
             </svg>
-        </div>
-    </div>
-    <ng-template #template>
+        </div> -->
+    <!-- </div> -->
+    <!-- <ng-template #template>
         <div class="modal-header">
             <h4 class="modal-title pull-left">Add New Training</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -132,4 +330,4 @@
             <button type="button" class="btn btn-primary mr-2" (click)="saveData()">Submit</button>
             <button type="button" class="btn btn-default mr-2" (click)="modalRef.hide()">Cancel</button>
         </div>
-    </ng-template>
+    </ng-template> -->

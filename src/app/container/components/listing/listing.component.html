@@ -1,12 +1,62 @@
-<div class="card-container fluid-container custom-scrollbar">
+<div class="page-wrapper">
+    <div class="banner-overlay"></div>
+    <div class="page-banner">
+
+    </div>
+    <div class="baner-caption rotate">
+        <h1>START FINDING REFERANCE IN CLICKS</h1>
+    </div>
+</div>
+<div class="section-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4 post-block" *ngFor="let item of listItems;let i = index;">
+                <div class="item-wrap">
+                    <div class="logo-part">
+                        <span class="logo-wrap">
+                                <img src="./assets/img/v2/emoji.png" class="job-image" />
+                        </span>
+                    </div>
+                    <div class="content-part mt-4" title="{{item?.Name }}">
+                        {{item?.Name }}
+                    </div>
+                    <div class="content-footer">
+                        <p><span class="ft-text">Company Name: </span>
+                            <span class="ft-val">{{item?.CompanyName}}</span></p>
+                        <p><span class="ft-text">Phone Number: </span>
+                            <span class="ft-val">{{item?.Mobile}}</span></p>
+                        <p><span class="ft-text">Email: </span>
+                            <span class="ft-val">{{item?.EmailAddress}}</span></p>
+                        <!-- <a class="view-details" (click)="showPopUp(imageModalTemplate, item)">View Details</a> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="add-new" (click)="addNewContact(template)">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 292.377 292.377" style="enable-background:new 0 0 292.377 292.377;" xml:space="preserve">
+            <g>
+                <path style="fill:orange;" d="M146.188,0C65.576,0,0,65.582,0,146.188s65.576,146.188,146.188,146.188
+               s146.188-65.582,146.188-146.188S226.801,0,146.188,0z M194.962,152.155h-42.806v42.8c0,3.3-2.667,5.967-5.967,5.967
+               c-3.3,0-5.967-2.667-5.967-5.967v-42.8H97.415c-3.294,0-5.967-2.673-5.967-5.967s2.673-5.967,5.967-5.967h42.806V97.415
+               c0-3.294,2.667-5.967,5.967-5.967c3.3,0,5.967,2.673,5.967,5.967v42.806h42.806c3.3,0,5.967,2.673,5.967,5.967
+               S198.261,152.155,194.962,152.155z" />
+            </g>
+        </svg>
+    </div>
+</div>
+
+<!-- <div class="card-container fluid-container custom-scrollbar"> -->
     <!-- <div class="row mb-2 mt-2">
         <div class="col-12 col-md-4  search-input-wrapper">
             <p class="m-0">Search: </p>
             <input class="search-input" type="search" [(ngModel)]="query" placeholder="Please enter atleast 3 chars" />
         </div>
     </div> -->
-    <div class="row">
-        <div class="col-12 col-md-4 mb-2" *ngFor="let item of listItems; let i =index;" >
+    <!-- <div class="row">
+        <div class="col-12 col-md-4 mb-2" *ngFor="let item of listItems; let i =index;">
             <div class="col-md-12 list-item-box">
                 <h3 class="list-tile">{{item?.Name }}</h3>
                 <div class="list-content mt-2 mb-2 p-2">
@@ -38,8 +88,8 @@
                    S198.261,152.155,194.962,152.155z" />
             </g>
         </svg>
-    </div>
-</div>
+    </div> -->
+<!-- </div> -->
 <ng-template #template>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Add New Referance</h4>

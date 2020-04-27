@@ -9,7 +9,7 @@ export class ApiCallService {
   constructor(private http: HttpClient) { }
 
   getPostings() {
-    const url = 'http://www.kolhapuritians.com/api/values';
+    const url = 'http://www.kolhapuritians.com/api/jobposting';
     return this.http.get(url);
   }
   callPostApi(url, param) {
