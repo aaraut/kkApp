@@ -38,9 +38,6 @@ export class ListingComponent implements OnInit {
     this.apiCallService.callGetApi(url).subscribe(data => {
       console.log('data', data, typeof data);
       this.listItems = data;
-      for(let i = 0; i < 5; i ++){
-        this.listItems.push({"ID":23,"Name":"Vinayak Kumbhar","CompanyName":"LTI Pune","Mobile":"88665544111222333","EmailAddress":"vinayak.k@lntinfotech.com"},{"ID":22,"Name":"Kanchan D Kumbhar","CompanyName":"HOneywell","Mobile":"08600999575","EmailAddress":"kanchan.kumbhar@gmail.com"})
-      }
     }, error => {
       this.openSnackBar('Something went wrong!', 'OK');
     })
