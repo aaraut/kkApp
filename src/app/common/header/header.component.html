@@ -25,7 +25,7 @@
                         <li class="nav-item" [ngClass]="{'active': urlRoute == '/company'}">
                             <a class="nav-link" href="#/company">Referances</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" [ngClass]="{'active': urlRoute == '/about-us'}">
                             <a class="nav-link" href="#/about-us">Our Story</a>
                         </li>
                         <li class="nav-item" *ngIf="!checkIfUserIsLoggedIn()" [ngClass]="{'active': urlRoute == '/login?page=signup'}">
