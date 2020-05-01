@@ -1,3 +1,4 @@
+import { LocalStorageService } from 'angular-web-storage';
 import { ApiCallService } from "./../../../core/api-call.service";
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
@@ -13,6 +14,7 @@ export class PostingComponent implements OnInit {
 
   modalRef: BsModalRef;
   imageModalRef: BsModalRef;
+  deleteModalRef: BsModalRef;
   selectedItem: any = {};
   config = {
     backdrop: true,
@@ -31,11 +33,13 @@ export class PostingComponent implements OnInit {
     type: "upload"
   };
   base64textString = [];
+  jobItemToDelete = {};
   constructor(
     private apiCallService: ApiCallService,
     private _sanitizer: DomSanitizer,
     private modalService: BsModalService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public local: LocalStorageService,
   ) {}
 
   ngOnInit() {
@@ -62,10 +66,9 @@ export class PostingComponent implements OnInit {
         this.postDetails = data;
 
         this.postDetails.map(elem => {
-          console.log('elem', elem);
           const tempItem = elem;
-          elem['displayImg'] = this.getNewImagePath(tempItem);
-        })
+          elem["displayImg"] = this.getNewImagePath(tempItem);
+        });
       },
       error => {
         this.openSnackBar("Something went wrong!", "OK");
@@ -74,33 +77,32 @@ export class PostingComponent implements OnInit {
   }
 
   getJobTitle(item) {
-    if(item.length > 50){
-      return item.substring(0, 50) + '...';
+    if (item.length > 50) {
+      return item.substring(0, 50) + "...";
     }
     return item;
   }
   addNewPost(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.config);
   }
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, this.config);
-  }
+  // openModal(template: TemplateRef<any>) {
+  //   this.modalRef = this.modalService.show(template, this.config);
+  // }
   getImagePath(item) {
     return "data:image/gif;base64," + item.PostImage;
   }
 
   getNewImagePath(item) {
     if (item.PostImage) {
-      return this._sanitizer.bypassSecurityTrustResourceUrl( item.PostImage);
+      return this._sanitizer.bypassSecurityTrustResourceUrl(item.PostImage);
     }
     const num = Math.floor(Math.random() * (7 - 1 + 1)) + 1;
-    const imgName = 'icon' + num + '.jpg';
+    const imgName = "icon" + num + ".jpg";
 
-    return '/assets/img/v2/' + imgName;
+    return "/assets/img/v2/" + imgName;
   }
   showPopUp(template, item) {
     this.selectedItem = item;
-    console.log('this.selectedItem', this.selectedItem)
     this.imageModalRef = this.modalService.show(template, this.config);
   }
   getSelectedImage() {
@@ -162,5 +164,39 @@ export class PostingComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000
     });
+  }
+
+  deletePost(template: TemplateRef<any>, item) {
+    this.jobItemToDelete = item;
+    this.deleteModalRef = this.modalService.show(template, this.config);
+  }
+  deleteJobPost() {
+    const obj = {
+      Operation: 'DELETE',
+      Id: this.jobItemToDelete['ID']
+    };
+    const url = "http://www.kolhapuritians.com/api/jobposting";
+    this.apiCallService.callPostApi(url, obj).subscribe(data => {
+      if(data['ResultType'] !=='Fail'){
+        this.jobItemToDelete = {};
+        this.openSnackBar("Job Post Deleted Successfully!", "OK");
+        this.deleteModalRef.hide();
+        this.fetchPosting();
+      } else {
+        this.openSnackBar("Something went wrong!", "OK");
+      }
+      
+    },
+    error => {
+      this.deleteModalRef.hide();
+      this.openSnackBar("Something went wrong!", "OK");
+    })
+  }
+
+  checkIfUserIsAdmin() {
+    if (this.local.get("admin") != undefined) {
+      return true;
+    }
+    return false;
   }
 }

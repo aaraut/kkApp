@@ -69,12 +69,10 @@ export class AppComponent implements OnInit {
           this.isSelected = "";
         }
       }
-      console.log("val", this.local.get(this.token), this.router.url);
       if (this.local.get(this.token) != undefined) {
         this.isUserLoggedIn = true;
   
         if(this.local.get('admin') != undefined){
-          console.log(this.local.get('admin'), 'asa')
           const temp = this.local.get('admin');
           this.isUserAdmin = temp.isAdmin;
         }

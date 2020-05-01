@@ -20,8 +20,7 @@ const routes: Routes = [
   {path: 'seminar' , component: TraingsComponent, canActivate: [AuthGuard] },
   {path: 'login' , component: AuthenticationComponent},
   {path: 'admin' , component: ApproveRejectComponent, canActivate: [AuthGuard] },
-  {path: 'about-us' , component: UnderConstructionComponent, canActivate: [AuthGuard] },
-  {path: 'society' , component: UnderConstructionComponent, canActivate: [AuthGuard] },
+  {path: 'about-us' , component: UnderConstructionComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

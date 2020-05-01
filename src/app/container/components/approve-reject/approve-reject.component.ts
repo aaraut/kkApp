@@ -1,63 +1,61 @@
-import { MatSnackBar } from '@angular/material';
-import { ApiCallService } from './../../../core/api-call.service';
-import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from "@angular/material";
+import { ApiCallService } from "./../../../core/api-call.service";
+import { Component, OnInit } from "@angular/core";
+import { forkJoin } from "rxjs";
 
 @Component({
-  selector: 'app-approve-reject',
-  templateUrl: './approve-reject.component.html',
-  styleUrls: ['./approve-reject.component.scss']
+  selector: "app-approve-reject",
+  templateUrl: "./approve-reject.component.html",
+  styleUrls: ["./approve-reject.component.scss"]
 })
 export class ApproveRejectComponent implements OnInit {
   tableData: any = [];
   allTableData = [];
-  isActive = 'p';
-  constructor(private apiCallService: ApiCallService, private _snackBar: MatSnackBar) { }
+  constructor(
+    private apiCallService: ApiCallService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
-    this.getPendingRecords();
+    this.getStatus();
     
   }
-  getPendingRecords() {
-    const url = 'http://www.kolhapuritians.com/api/register?value=P';
-    this.apiCallService.callGetApi(url).subscribe(data => {
-      this.tableData = data;
-      // this.getApprovedRecords();
-      // this.getRejectedRecords();
-    }, error => {
-      this.openSnackBar('Something went wrong!', 'OK');
-    })
-  }
-  getApprovedRecords() {
-    const url = 'http://www.kolhapuritians.com/api/register?value=A';
-    this.apiCallService.callGetApi(url).subscribe(data => {
-      const tempdata:any = data;
-      if(tempdata.length > 0){
-        tempdata.map(item => {
-          this.allTableData.push(item)
-        })
-      }
-    }, error => {
-      this.openSnackBar('Something went wrong!', 'OK');
-    })
-  }
 
-  getRejectedRecords(){
-    const url = 'http://www.kolhapuritians.com/api/register?value=R';
-    this.apiCallService.callGetApi(url).subscribe(data => {
-      const tempdata:any = data;
-      if(tempdata.length > 0){
-        tempdata.map(item => {
-          this.allTableData.push(item)
-        })
+  getStatus() {
+    const url1 = "http://www.kolhapuritians.com/api/register?value=P";
+    const url2 = "http://www.kolhapuritians.com/api/register?value=A";
+    const url3 = "http://www.kolhapuritians.com/api/register?value=R";
+
+    forkJoin(
+      this.apiCallService.callGetApi(url1),
+      this.apiCallService.callGetApi(url2),
+      this.apiCallService.callGetApi(url3)
+    ).subscribe(response => {
+      console.log("call1Response", response);
+      const fobj: any = response[0];
+      const fobj1: any = response[1];
+      const fobj2: any = response[2];
+      if (fobj.length > 0) {
+        fobj.map(item => {
+          this.allTableData.push(item);
+        });
       }
-    }, error => {
-      this.openSnackBar('Something went wrong!', 'OK');
-    })
+      if (fobj1.length > 0) {
+        fobj1.map(item => {
+          this.allTableData.push(item);
+        });
+      }
+      if (fobj2.length > 0) {
+        fobj2.map(item => {
+          this.allTableData.push(item);
+        });
+      }
+    });
   }
 
   approve(id) {
-    const url = 'http://www.kolhapuritians.com/api/register';
-    const obj = this.tableData.filter(item =>  {
+    const url = "http://www.kolhapuritians.com/api/register";
+    const obj = this.allTableData.filter(item => {
       return item.ID == id;
     });
     const param = {
@@ -69,19 +67,22 @@ export class ApproveRejectComponent implements OnInit {
       TechnicalSkill: obj[0].TechnicalSkill,
       Organisation: obj[0].Organisation,
       Password: obj[0].Password,
-      ApprovalStatus: 'A',
+      ApprovalStatus: "A",
       IsAdmin: obj[0].IsAdmin
     };
-    this.apiCallService.callPutApi(url, param).subscribe(data => {
-      this.getPendingRecords();
-      this.openSnackBar('User Approved Successfully', 'OK');
-    }, error => {
-      this.openSnackBar('Something went wrong!', 'OK');
-    })
+    this.apiCallService.callPutApi(url, param).subscribe(
+      data => {
+        this.getStatus();
+        this.openSnackBar("User Approved Successfully", "OK");
+      },
+      error => {
+        this.openSnackBar("Something went wrong!", "OK");
+      }
+    );
   }
-  reject(id){
-    const url = 'http://www.kolhapuritians.com/api/register';
-    const obj = this.tableData.filter(item =>  {
+  reject(id) {
+    const url = "http://www.kolhapuritians.com/api/register";
+    const obj = this.allTableData.filter(item => {
       return item.ID == id;
     });
     const param = {
@@ -93,32 +94,26 @@ export class ApproveRejectComponent implements OnInit {
       TechnicalSkill: obj[0].TechnicalSkill,
       Organisation: obj[0].Organisation,
       Password: obj[0].Password,
-      ApprovalStatus: 'R'
+      ApprovalStatus: "R"
     };
-    this.apiCallService.callPutApi(url, param).subscribe(data => {
-      this.getPendingRecords();
-      this.openSnackBar('User Rejected Successfully', 'OK');
-    }, error => {
-      this.openSnackBar('Something went wrong!', 'OK');
-    })
+    this.apiCallService.callPutApi(url, param).subscribe(
+      data => {
+        this.getStatus();
+        this.openSnackBar("User Rejected Successfully", "OK");
+      },
+      error => {
+        this.openSnackBar("Something went wrong!", "OK");
+      }
+    );
   }
-  itemClicked(state){
-    console.log('state', state)
-    this.isActive = state;
-    this.allTableData = [];
-    this.tableData = [];
-
-    if(state == 'p'){
-      this.getPendingRecords();
-    } else {
-      this.getApprovedRecords();
-      this.getRejectedRecords();
-    }
-  }
+  
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      duration: 2000,
+      duration: 2000
     });
+  }
+  isDisabled(item){
+    return item['ApprovalStatus'] == 'P' ? false : true;
   }
 }

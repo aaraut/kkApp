@@ -239,11 +239,19 @@
     align-items: center;
     transition: all 0.4s ease 0s;
     border-radius: 4px;
+    position: relative;
 
     &:hover{
       box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
       border-color: #ffffff;
       margin-top: -10px;
+    }
+
+    .delete-post{
+      position: absolute;
+      right: 26px;
+      top: 5px;
+      font-size: 18px;
     }
   }
   .job-image{
@@ -278,7 +286,9 @@
       font-weight: bold;
       border: 1px solid;
       padding: 6px;
-      border-radius: 20px;
+      // border-radius: 20px;
+      width: 90px;
+      text-align: center;
 
       &:hover{
         background: orange;

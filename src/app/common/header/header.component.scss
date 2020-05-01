@@ -19,8 +19,27 @@
   }
   .nav-item{
     padding: 10px 20px;
+    &.active{
+
+    }
   }
   .btn-outline-success{
     margin-left: 20px;
+
+    &.active-btn{
+      color: #fff;
+      background-color: #28a745;
+      border-color: #28a745;
+    }
   }
+}
+.nav-item{
+  &.active{
+    text-decoration: underline;
+  }
+}
+.active-btn{
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
 }

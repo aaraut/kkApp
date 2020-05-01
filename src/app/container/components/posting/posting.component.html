@@ -13,22 +13,25 @@
         <div class="row">
             <div class="col-12 col-md-3 post-block" *ngFor="let item of postDetails;let i = index;">
                 <div class="item-wrap">
+                    <span class="delete-post" title="Delete Job Post" *ngIf="checkIfUserIsAdmin()" (click)="deletePost(deletetemplate, item)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                        </span>
                     <div class="logo-part">
                         <span class="logo-wrap">
                                 <img [src]="item.displayImg" class="job-image" />
                         </span>
                     </div>
                     <div class="content-part mt-4" title="{{item?.JobTitle}}">
-                            {{getJobTitle(item?.JobTitle)}}
+                        {{getJobTitle(item?.JobTitle)}}
                     </div>
                     <div class="content-footer">
-                        <p><span class="ft-text">Location: </span> 
+                        <p><span class="ft-text">Location: </span>
                             <span class="ft-val">{{item?.JobLocation!=='' ? item?.JobLocation : 'Not Available'}}</span></p>
-                            <a class="view-details" (click)="showPopUp(imageModalTemplate, item)">View Details</a>
+                        <a class="view-details" (click)="showPopUp(imageModalTemplate, item)">View Details</a>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <div class="add-new" (click)="addNewPost(template)">
@@ -359,5 +362,20 @@
     <div class="modal-footer mt-4">
         <button type="button" class="btn btn-primary mr-2" (click)="saveDetails()">Submit</button>
         <button type="button" class="btn btn-default mr-2" (click)="modalRef.hide()">Cancel</button>
+    </div>
+</ng-template>
+<ng-template #deletetemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Confirm</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete this job post</p>
+    </div>
+    <div class="modal-footer mt-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="deleteJobPost()">Yes</button>
+        <button type="button" class="btn btn-default mr-2" (click)="deleteModalRef.hide()">No</button>
     </div>
 </ng-template>

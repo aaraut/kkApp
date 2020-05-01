@@ -28,19 +28,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="content-part mt-4" >
+                    <div class="content-part mt-4">
                         <h4 class="mt-2">{{item?.Subject}}</h4>
 
                         <p class="content-desc">{{getItemDetails(item?.Details)}}</p>
                     </div>
                     <div class="content-footer">
-                        <p><span class="ft-text">Location: </span> 
+                        <p><span class="ft-text">Location: </span>
                             <span class="ft-val">{{item?.Venue}}</span></p>
-                            <a class="view-details" (click)="showPopUp(trainingDetailsModalTemplate, item)">View Details</a>
+                        <span class="ft-row">
+                                <a class="view-details" *ngIf="checkIfUserIsAdmin()" (click)="showDeletePopUp(deleteTemplate, item)">Delete</a>
+                                <a class="view-details" (click)="showPopUp(trainingDetailsModalTemplate, item)">View Details</a>
+                            </span>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <div class="add-new" (click)="addNewTraining(template)">
@@ -56,6 +59,22 @@
         </svg>
     </div>
 </div>
+<ng-template #deleteTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Confirm</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete this training?</p>
+    </div>
+    <div class="modal-footer mt-4">
+        <button type="button" class="btn btn-primary mr-2" (click)="deleteTraining()">Yes</button>
+        <button type="button" class="btn btn-default mr-2" (click)="deleteModalRef.hide()">No</button>
+    </div>
+</ng-template>
+
 <ng-template #trainingDetailsModalTemplate>
     <div class="modal-header">
         <h4 class="modal-title pull-left">{{selectedItem?.Subject}}</h4>
@@ -64,7 +83,7 @@
     </button>
     </div>
     <div class="modal-body">
-        
+
         <div class="body-wrapper custom-scrollbar">
             <div class="row cust-table-row">
                 <div class="col-4">
@@ -138,11 +157,7 @@
                 <label>Start Date: </label>
             </div>
             <div class="cw-rhs">
-                <input
-                class="form-control"
-                #datepickerFull="bsDatepicker"
-                bsDatepicker   [(ngModel)]="newTraining.StartDate"                 
-                [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
+                <input class="form-control" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.StartDate" [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
             </div>
         </div>
         <div class="contact-wrapper">
@@ -150,11 +165,7 @@
                 <label>End Date: </label>
             </div>
             <div class="cw-rhs">
-                <input
-                class="form-control"
-                #datepickerFull="bsDatepicker"
-                bsDatepicker  [(ngModel)]="newTraining.EndDate"                      
-                [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
+                <input class="form-control" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.EndDate" [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
             </div>
         </div>
         <div class="contact-wrapper">
@@ -197,13 +208,13 @@
 </ng-template>
 
 <!-- <div class="card-container fluid-container custom-scrollbar"> -->
-        <!-- <div class="row mb-2 mt-2">
+<!-- <div class="row mb-2 mt-2">
             <div class="col-12 col-md-4  search-input-wrapper">
                 <p class="m-0">Search: </p>
                 <input class="search-input" type="search" [(ngModel)]="query" placeholder="Please enter atleast 3 chars" />
             </div>
         </div> -->
-        <!-- <div class="row">
+<!-- <div class="row">
             <div class="col-12 col-md-4 mb-2" *ngFor="let item of list; let i =index;" >
                 <div class="col-md-12 list-item-box">
                     <h3 class="list-tile">{{item?.Subject }}</h3>
@@ -240,7 +251,7 @@
     
     
         </div> -->
-        <!-- <div class="add-new" (click)="addNewTraining(template)">
+<!-- <div class="add-new" (click)="addNewTraining(template)">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 292.377 292.377" style="enable-background:new 0 0 292.377 292.377;" xml:space="preserve">
                 <g>
@@ -252,8 +263,8 @@
                 </g>
             </svg>
         </div> -->
-    <!-- </div> -->
-    <!-- <ng-template #template>
+<!-- </div> -->
+<!-- <ng-template #template>
         <div class="modal-header">
             <h4 class="modal-title pull-left">Add New Training</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

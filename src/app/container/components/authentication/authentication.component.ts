@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { SessionStorageService } from 'angular-web-storage';
 import { LocalStorageService } from 'angular-web-storage';
@@ -35,10 +36,20 @@ export class AuthenticationComponent implements OnInit {
     something:false,
     server:false
   };
-  constructor(private apiCallService: ApiCallService, public router: Router,
+  constructor(private apiCallService: ApiCallService, public router: Router, private route: ActivatedRoute,
               public local: LocalStorageService, public session: SessionStorageService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+        // Defaults to 0 if no query param provided.
+        console.log('params', params);
+        if(params.page == 'signup'){
+          this.formView = 'signup';
+        } else {
+          this.formView = 'login';
+        }
+      });
+  }
 
   login(message: string, action: string) {
     // tslint:disable-next-line:no-string-literal
@@ -46,19 +57,15 @@ export class AuthenticationComponent implements OnInit {
     // tslint:disable-next-line:no-string-literal
     '&password=' + this.loginAttr['pwd'];
     this.apiCallService.callGetApi(url).subscribe(data => {
-      console.log('data', data);
       if(data["ReturnResult"]!== 'fail'){
-        this.local.set('token', { isValidUser: 1 }, 1000, 's');
-        console.log('dsdsdsd',this.local.get('redirectTo'))
-        this.local.set('admin', { isAdmin: data['IsAdmin'] }, 1000, 's')
+        this.local.set('token', { isValidUser: 1 }, 5000, 's');
+        this.local.set('admin', { isAdmin: data['IsAdmin'] }, 5000, 's')
         const tempVar = this.local.get('redirectTo');
-        console.log('tempVar', tempVar)
         if(tempVar != undefined && tempVar != null && 
           tempVar.url !== "/login"){
           const temp = this.local.get('redirectTo');
           this.local.remove('redirectTo');
           this.router.navigate([temp.url])
-          console.log(this.local.get('redirectTo'), 'dsds')
         } else {
           this.router.navigate(['/home'])
         }
@@ -77,7 +84,6 @@ export class AuthenticationComponent implements OnInit {
     if(this.signupAttr.email!= ''){
       const tempUrl = 'http://www.kolhapuritians.com/api/Register?value=valid&emailId=' + this.signupAttr.email;
       this.apiCallService.callGetApi(tempUrl).subscribe(data => {
-        console.log('success', data)
         if(data['ReturnResult'] == 'Success'){
           this.callRegisterApi();
         }
@@ -125,7 +131,6 @@ export class AuthenticationComponent implements OnInit {
         ApprovalStatus: false
       };
       this.apiCallService.callPostApi(url, param).subscribe(data => {
-        console.log('user registered');
         this.signupAttr = {
           name: '',
           mob: '',
@@ -143,7 +148,6 @@ export class AuthenticationComponent implements OnInit {
         this.signUpError.something = true;
         this.signUpError.errorPresent = true;
       });
-      console.log('success');
 
     }
   }

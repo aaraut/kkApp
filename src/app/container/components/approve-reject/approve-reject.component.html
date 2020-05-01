@@ -1,4 +1,73 @@
-<div class="approv-reject-card custom-scrollbar">
+<div class="section-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4 post-block" *ngFor="let item of allTableData;let i = index;">
+        <div class="item-wrap">
+          <div class="logo-part">
+            <span class="logo-wrap">
+                        <img src="./assets/img/v2/emoji.png" class="job-image" />
+                </span>
+          </div>
+          <div class="admin-strip" title="Person is Admin" *ngIf="item?.IsAdmin">
+            <p>Admin</p>
+          </div>
+          <div class="content-part mt-4" title="Name">
+            {{item?.Name}}
+          </div>
+          <div class="content-footer">
+            <p><span class="ft-text" title="Mobile Number"><i class="fa fa-phone-square mr-1" aria-hidden="true"></i></span>
+              <span class="ft-val">{{item?.MobileNumber}}</span></p>
+            <p><span class="ft-text" title="Email Address"><i class="fa fa-envelope mr-1" aria-hidden="true"></i> </span>
+              <span class="ft-val">{{item?.Email}}</span></p>
+            <p>
+              <span class="row-wrap">
+                <span class="col-wrap">
+                    <span class="ft-text" title="Organisation Name"><i class="fa fa-briefcase mr-1" aria-hidden="true"></i></span>
+                    <span class="ft-val">{{item?.Organisation}}</span>
+                </span>
+                <span class="col-wrap">
+                    <span class="ft-text" title="Location"><i class="fa fa-map-marker mr-1" aria-hidden="true"></i></span>
+                    <span class="ft-val">{{item?.Location}}</span>
+                </span>
+              </span>
+            </p>
+            <p>
+                <span class="row-wrap">
+                  <span class="col-wrap">
+                      <span class="ft-text" title="Designation"><i class="fa fa-black-tie mr-2" aria-hidden="true"></i></span>
+                      <span class="ft-val">{{item?.JobPost}}</span>
+                  </span>
+                  <span class="col-wrap">
+                      <span class="ft-text" title="Password"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i></span>
+                      <span class="ft-val">{{item?.Password}}</span>
+                  </span>
+                </span>
+              </p>
+            <p><span class="ft-text" title="Technical Skills"><i class="fa fa-graduation-cap mr-1" aria-hidden="true"></i></span>
+              <span class="ft-val">{{item?.TechnicalSkill}}</span></p>
+          
+            <!-- <a class="view-details" (click)="showPopUp(imageModalTemplate, item)">View Details</a> -->
+          </div>
+          <div class="content-footer">
+            <div class="btn-wrap">
+              <span class="reject-wrap">
+                  <a class="view-details" (click)="reject(item?.ID)" [class.disabled]="isDisabled(item)">Reject</a>
+              </span>
+              <span class="approve-wrap">
+                  <a class="view-details" (click)="approve(item?.ID)" [class.disabled]="isDisabled(item)">Approve</a>
+              </span>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="approv-reject-card custom-scrollbar">
   <div class="tab-wrapper">
     <div class="tab-header">
       <ul class="th-list">
@@ -47,42 +116,42 @@
         </div>
       </div>
       <div class="tab-content-wrapper" *ngIf="isActive == 'a'">
-          <div class="table-responsive-lg">
-              <table class="table">
-    
-                <thead>
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">MobileNumber</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Organisation</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">JobPost</th>
-                    <th scope="col">TechnicalSkill</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">IsAdmin</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of allTableData">
-                    <td>{{item?.Name}}</td>
-                    <td>{{item?.MobileNumber}}</td>
-                    <td>{{item?.Email}}</td>
-                    <td>{{item?.Organisation}}</td>
-                    <td>{{item?.Location}}</td>
-                    <td>{{item?.JobPost}}</td>
-                    <td>{{item?.TechnicalSkill}}</td>
-                    <td>{{item?.Password}}</td>
-                    <td>
-                      {{item?.IsAdmin == true ? 'Yes' : 'No'}}
-                    </td>
-    
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        <div class="table-responsive-lg">
+          <table class="table">
+
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">MobileNumber</th>
+                <th scope="col">Email</th>
+                <th scope="col">Organisation</th>
+                <th scope="col">Location</th>
+                <th scope="col">JobPost</th>
+                <th scope="col">TechnicalSkill</th>
+                <th scope="col">Password</th>
+                <th scope="col">IsAdmin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of allTableData">
+                <td>{{item?.Name}}</td>
+                <td>{{item?.MobileNumber}}</td>
+                <td>{{item?.Email}}</td>
+                <td>{{item?.Organisation}}</td>
+                <td>{{item?.Location}}</td>
+                <td>{{item?.JobPost}}</td>
+                <td>{{item?.TechnicalSkill}}</td>
+                <td>{{item?.Password}}</td>
+                <td>
+                  {{item?.IsAdmin == true ? 'Yes' : 'No'}}
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-</div>
+</div> -->

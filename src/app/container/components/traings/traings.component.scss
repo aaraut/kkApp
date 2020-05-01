@@ -221,7 +221,8 @@
       font-weight: bold;
       border: 1px solid;
       padding: 6px;
-      border-radius: 20px;
+      width: 90px;
+      text-align: center;
 
       &:hover {
         background: orange;
@@ -248,4 +249,8 @@ label,
 textarea {
   font-family: sans-serif;
   font-size: 14px;
+}
+span.ft-row {
+  display: flex;
+  justify-content: space-between;
 }
