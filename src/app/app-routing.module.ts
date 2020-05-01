@@ -1,3 +1,4 @@
+import { AboutUsComponent } from './container/components/about-us/about-us.component';
 import { HomeComponent } from './home/home.component';
 import { TraingsComponent } from './container/components/traings/traings.component';
 import { UnderConstructionComponent } from './container/components/under-construction/under-construction.component';
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path: 'seminar' , component: TraingsComponent, canActivate: [AuthGuard] },
   {path: 'login' , component: AuthenticationComponent},
   {path: 'admin' , component: ApproveRejectComponent, canActivate: [AuthGuard] },
-  {path: 'about-us' , component: UnderConstructionComponent, canActivate: [AuthGuard] }
+  {path: 'about-us' , component: AboutUsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

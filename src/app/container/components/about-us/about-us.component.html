@@ -1,1 +1,43 @@
-<p>about-us works!</p>
+<div class="page-wrapper">
+    <div class="banner-overlay"></div>
+    <div class="page-banner">
+
+    </div>
+    <div class="baner-caption rotate">
+        <h1>Want to hear about Us:</h1>
+
+        <p class="mt-2">
+            Our story has been about perseverance and focus towards one goal - making technical recruitment simple and efficient. And this journey has been no walk in the park - we have had our share of challenges and we know there are more to come in the future.
+        </p>
+        <p class="mt-2">
+            Our story is continually changing, as the people who keep working with us are finding more innovative ways each passing day.
+        </p>
+    </div>
+</div>
+<div class="about-team mt-4 mb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mt-4 header-text">Our Team</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-3 post-block" *ngFor="let item of teamDetails;let i = index;">
+                <div class="item-wrap">
+                    <div class="logo-part">
+                        <span class="logo-wrap">
+                            <img src="./assets/img/v2/emoji.png" class="job-image" />
+                        </span>
+                    </div>
+                    <div class="content-part mt-4" title="Name">
+                        {{item?.name}}
+                    </div>
+                    <div class="content-footer">
+                        <p>{{item.skillSet}}</p>
+                        <p>{{item.desc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
