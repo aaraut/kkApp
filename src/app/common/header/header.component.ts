@@ -33,6 +33,10 @@ export class HeaderComponent implements OnInit {
     return false;
   }
 
+  getUserName() {
+    return 'Alekh'
+  }
+
   logout(){
     this.local.remove("token");
     this.local.remove('admin');

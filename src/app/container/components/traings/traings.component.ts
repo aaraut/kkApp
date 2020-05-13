@@ -15,6 +15,7 @@ export class TraingsComponent implements OnInit {
   deleteModalRef: BsModalRef;
   selectedItem: any = {};
   itemToDelete = {};
+  timeArray = [];
   constructor(
     private modalService: BsModalService,
     private apiCallService: ApiCallService,
@@ -33,10 +34,21 @@ export class TraingsComponent implements OnInit {
     Duration: "",
     Details: "",
     Venue: "",
-    Time: ""
+    StartTime: "",
+    EndTime: ''
   };
   ngOnInit() {
+    this.setTime();
     this.getAllList();
+  }
+  setTime() {
+    for(let i = 0;i < 24; i++){
+      if(i < 10){
+        this.timeArray.push('0' + i);
+      } else {
+        this.timeArray.push(i);
+      }
+    }
   }
   getAllList() {
     const url = "http://kolhapuritians.com/api/training";
@@ -61,7 +73,8 @@ export class TraingsComponent implements OnInit {
       Duration: this.newTraining["Duration"],
       Details: this.newTraining["Details"],
       Venue: this.newTraining["Venue"],
-      Time: this.newTraining["Time"]
+      StartTime: this.newTraining["StartTime"],
+      EndTime: this.newTraining["EndTime"],
     };
     const url = "http://www.kolhapuritians.com/api/training";
     this.apiCallService.callPostApi(url, obj).subscribe(
@@ -75,7 +88,8 @@ export class TraingsComponent implements OnInit {
           Duration: "",
           Details: "",
           Venue: "",
-          Time: ""
+          StartTime: "",
+          EndTime: ''
         };
         this.openSnackBar("Training Added Successfully!", "OK");
       },

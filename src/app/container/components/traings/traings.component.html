@@ -194,10 +194,26 @@
         </div>
         <div class="contact-wrapper">
             <div class="cw-lhs">
-                <label>Time: </label>
+                <label>Start Time: </label>
             </div>
             <div class="cw-rhs">
-                <input type="text" [(ngModel)]="newTraining.Time" />
+                <select class="form-control" name="exampleFormControlSelect1" [(ngModel)]="newTraining.StartTime">
+                <option *ngFor="let item of timeArray" value="item">{{item}}</option>
+                
+            </select>
+                <!-- <input type="text" [(ngModel)]="newTraining.Time" /> -->
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
+                <label>End Time: </label>
+            </div>
+            <div class="cw-rhs">
+                <select class="form-control" name="exampleFormControlSelect2" [(ngModel)]="newTraining.EndTime">
+                    <option *ngFor="let item of timeArray" value="item">{{item}}</option>
+                    
+                </select>
+                <!-- <input type="text" [(ngModel)]="newTraining.Time" /> -->
             </div>
         </div>
     </div>

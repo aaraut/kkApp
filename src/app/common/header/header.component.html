@@ -6,8 +6,11 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img class="header-img" src="../../assets/img/v2/logo.png" /></a>
-
+                <a class="navbar-brand" href="#"><img class="header-img" src="../../assets/img/v2/logo2.png" /></a>
+                <div class="user-icon-for-mob" *ngIf="checkIfUserIsLoggedIn()">
+                    <img class="user-img mr-4" src="../../assets/img/v2/user.png" />
+                    <p class="m-0">Welcome <span class="user-name">{{getUserName()}}</span></p>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item" [ngClass]="{'active': urlRoute == '' || urlRoute == '/home'}">
@@ -29,11 +32,18 @@
                             <a class="nav-link" href="#/about-us">Our Story</a>
                         </li>
                         <li class="nav-item" *ngIf="!checkIfUserIsLoggedIn()" [ngClass]="{'active': urlRoute == '/login?page=signup'}">
-                            <a class="nav-link" href="#/login?page=signup" >Sign up</a>
+                            <a class="nav-link" href="#/login?page=signup">Sign up</a>
                         </li>
                     </ul>
-                    <button class="btn btn-outline-success ml-2 my-sm-0" [ngClass]="{'active-btn': urlRoute == '/login'}"(click)="login()" *ngIf="!checkIfUserIsLoggedIn()" type="button">Login</button>
+
+                    <button class="btn btn-outline-success ml-2 my-sm-0" [ngClass]="{'active-btn': urlRoute == '/login'}" (click)="login()" *ngIf="!checkIfUserIsLoggedIn()"
+                        type="button">Login</button>
                     <button class="btn btn-outline-danger ml-2 my-sm-0" (click)="logout()" *ngIf="checkIfUserIsLoggedIn()" type="button">Logout</button>
+
+                    <div class="user-icon ml-2" *ngIf="checkIfUserIsLoggedIn()">
+                        <img class="user-img" src="../../assets/img/v2/user.png" />
+                        <p class="m-0">Welcome <span class="user-name">{{getUserName()}}</span></p>
+                    </div>
                 </div>
             </nav>
         </div>

@@ -15,18 +15,66 @@
                 <div class="alert alert-danger" *ngIf="loginAttr.error" role="alert">
                     Please enter valid credentials!
                 </div>
-                <form name="loginForm">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="email" placeholder="Your Email *" [(ngModel)]="loginAttr.email" />
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="pwd" class="form-control" placeholder="Your Password *" [(ngModel)]="loginAttr.pwd" />
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" (click)="login('Login Failed', 'Dismiss')" class="btnSubmit float-right" value="Login" />
-                    </div>
+                <ng-container *ngIf="formLoginScreen == 'login'">
+                    <form name="loginForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="Your Email *" [(ngModel)]="loginAttr.email" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="pwd" class="form-control" placeholder="Your Password *" [(ngModel)]="loginAttr.pwd" />
+                        </div>
+                        <div class="form-group btn-form-group">
+                            <p (click)="formLoginScreen = 'security'">Forgot Password</p>
+                            <input type="submit" (click)="login('Login Failed', 'Dismiss')" class="btnSubmit float-right" value="Login" />
+                        </div>
 
-                </form>
+                    </form>
+                </ng-container>
+                <ng-container *ngIf="formLoginScreen == 'security'">
+                    <form name="loginForm1">
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email1" placeholder="Your Email *" [(ngModel)]="security.email" />
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="FormControlSelect1" [(ngModel)]="security.SecurityQuestionId">
+                                <option value="0" disabled>Please Select Security Question</option>
+                                <option *ngFor="let item of securityData" value="{{item?.ID}}">{{item?.Question}}</option>
+                                
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="Security Question Answer *" [(ngModel)]="security.SecurityAnswer"
+                            />
+                        </div>
+                        <div class="form-group btn-form-group">
+                            <p (click)="backToLogin()">Back To Login</p>
+                            <input type="submit" (click)="resetPassword()" class="btnSubmit float-right" value="Reset" />
+                        </div>
+
+                    </form>
+                </ng-container>
+                <ng-container *ngIf="formLoginScreen == 'resetPassword'">
+                    <form name="loginForm2">
+                        <div class="alert alert-danger mt-3 mb-3" *ngIf="password.server"  role="alert">
+                            <p class="m-0" >Something went wrong! Please try again.
+                                <br/>If issue still persist please contact us
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="newPassword" placeholder="New Password *" [(ngModel)]="password.new" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="confirmPassword" placeholder="Confirm Password *" [(ngModel)]="password.confirm"
+                            />
+                        </div>
+                        <div class="form-group btn-form-group">
+                            <p (click)="backToLogin()">Back To Login</p>
+                            <input type="submit" [disabled]="password.new == '' || password.confirm == ''" (click)="confirmPassword()" class="btnSubmit float-right"
+                                value="Confirm" />
+                        </div>
+
+                    </form>
+                </ng-container>
             </div>
 
             <div class="signup-wrapper" *ngIf="formView == 'signup'">
@@ -39,55 +87,67 @@
                 </div>
                 <form name="signupForm">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name" placeholder="Name *" 
-                        [(ngModel)]="signupAttr.name" [ngClass]="{'invalid': signUpError.mandate && signupAttr.name == ''}"/>
+                        <input type="text" class="form-control" name="name" placeholder="Name *" [(ngModel)]="signupAttr.name" [ngClass]="{'invalid': signUpError.mandate && signupAttr.name == ''}"
+                        />
                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.name = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group twofield-lhs">
-                        <input type="text" class="form-control" name="mob" placeholder="Mobile Number *"
-                         [(ngModel)]="signupAttr.mob" [ngClass]="{'invalid': signUpError.mandate && signupAttr.mob == ''}"/>
-                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.mob = ''" aria-hidden="true"></i>
+                        <input type="text" class="form-control" name="mob" placeholder="Mobile Number *" [(ngModel)]="signupAttr.mob" [ngClass]="{'invalid': signUpError.mandate && signupAttr.mob == ''}"
+                        />
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.mob = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group twofield-rhs">
-                        <input type="email" class="form-control" name="emailId" placeholder="Email Id *" 
-                        [(ngModel)]="signupAttr.email" [ngClass]="{'invalid': signUpError.mandate && signupAttr.email == ''}"/>
+                        <input type="email" class="form-control" name="emailId" placeholder="Email Id *" [(ngModel)]="signupAttr.email" [ngClass]="{'invalid': signUpError.mandate && signupAttr.email == ''}"
+                        />
                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.email = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group twofield-lhs">
-                        <input type="text" class="form-control" name="oorg" placeholder="Organisation *" 
-                        [(ngModel)]="signupAttr.org" [ngClass]="{'invalid': signUpError.mandate && signupAttr.org == ''}"/>
+                        <input type="text" class="form-control" name="oorg" placeholder="Organisation *" [(ngModel)]="signupAttr.org" [ngClass]="{'invalid': signUpError.mandate && signupAttr.org == ''}"
+                        />
                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.org = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group twofield-rhs">
-                        <input type="text" class="form-control" name="loc" placeholder="Location" 
-                        [(ngModel)]="signupAttr.loc" />
+                        <input type="text" class="form-control" name="loc" placeholder="Location" [(ngModel)]="signupAttr.loc" />
                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.loc = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group twofield-lhs">
-                        <input type="text" class="form-control" name="desc" placeholder="Designation"
-                         [(ngModel)]="signupAttr.desc" />
-                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.desc = ''" aria-hidden="true"></i>
+                        <input type="text" class="form-control" name="desc" placeholder="Designation" [(ngModel)]="signupAttr.desc" />
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.desc = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group twofield-rhs">
-                        <input type="text" class="form-control" name="area" placeholder="Preferred Technical Field For Guidance"
-                         [(ngModel)]="signupAttr.area"
+                        <input type="text" class="form-control" name="area" placeholder="Preferred Technical Field For Guidance" [(ngModel)]="signupAttr.area"
                         />
                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.area = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group twofield-lhs">
-                        <input type="password" name="pwd" class="form-control" placeholder="Your Password *"
-                         [(ngModel)]="signupAttr.pwd" [ngClass]="{'invalid': signUpError.mandate && signupAttr.pwd == ''
-                         || signUpError.mismatchpwd}"/>
-                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.pwd = ''" aria-hidden="true"></i>
+                        <input type="password" name="pwd" class="form-control" placeholder="Your Password *" [(ngModel)]="signupAttr.pwd" [ngClass]="{'invalid': signUpError.mandate && signupAttr.pwd == ''
+                         || signUpError.mismatchpwd}" />
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.pwd = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group twofield-rhs">
-                        <input type="password" name="conpwd" class="form-control" placeholder="Re-enter Password *" 
-                        [(ngModel)]="signupAttr.rpwd" [ngClass]="{'invalid': signUpError.mandate && signupAttr.rpwd == ''
-                    || signUpError.mismatchpwd}"/>
-                    <i class="fa fa-times reset-icon float-right" (click)="signupAttr.rpwd = ''" aria-hidden="true"></i>
+                        <input type="password" name="conpwd" class="form-control" placeholder="Re-enter Password *" [(ngModel)]="signupAttr.rpwd"
+                            [ngClass]="{'invalid': signUpError.mandate && signupAttr.rpwd == ''
+                    || signUpError.mismatchpwd}" />
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.rpwd = ''" aria-hidden="true"></i>
+                    </div>
+                    <div class="form-group twofield-lhs">
+                        <!-- <label for="exampleFormControlSelect1" class="mb-0">Example select</label> -->
+                        <select class="form-control" name="exampleFormControlSelect1" [(ngModel)]="signupAttr.SecurityQuestionId">
+                                <option value="0" disabled>Please Select Security Question</option>
+                              <option *ngFor="let item of securityData" value="item?.ID">{{item?.Question}}</option>
+                              
+                            </select>
+                        <!-- <input type="text" class="form-control" name="mob" placeholder="Mobile Number *"
+                             [(ngModel)]="signupAttr.mob" [ngClass]="{'invalid': signUpError.mandate && signupAttr.mob == ''}"/>
+                             <i class="fa fa-times reset-icon float-right" (click)="signupAttr.mob = ''" aria-hidden="true"></i> -->
+                    </div>
+                    <div class="form-group twofield-rhs">
+                        <input type="text" class="form-control" name="securityAns" placeholder="Security Question Answer *" [(ngModel)]="signupAttr.SecurityAnswer"
+                            [ngClass]="{'invalid': signUpError.mandate && signupAttr.SecurityAnswer == ''}" />
+                        <i class="fa fa-times reset-icon float-right" (click)="signupAttr.SecurityAnswer = ''" aria-hidden="true"></i>
                     </div>
                     <div class="form-group">
-                        <input type="submit"  (click)="signup()" class="btnSubmit float-right" value="Register" />
+                        <input type="submit" (click)="signup()" class="btnSubmit float-right" value="Register" />
                     </div>
 
                 </form>

@@ -23,32 +23,41 @@
               <span class="row-wrap">
                 <span class="col-wrap">
                     <span class="ft-text" title="Organisation Name"><i class="fa fa-briefcase mr-1" aria-hidden="true"></i></span>
-                    <span class="ft-val">{{item?.Organisation}}</span>
-                </span>
-                <span class="col-wrap">
+              <span class="ft-val">{{item?.Organisation}}</span>
+              </span>
+              <span class="col-wrap">
                     <span class="ft-text" title="Location"><i class="fa fa-map-marker mr-1" aria-hidden="true"></i></span>
-                    <span class="ft-val">{{item?.Location}}</span>
-                </span>
+              <span class="ft-val">{{item?.Location}}</span>
+              </span>
               </span>
             </p>
             <p>
-                <span class="row-wrap">
+              <span class="row-wrap">
                   <span class="col-wrap">
                       <span class="ft-text" title="Designation"><i class="fa fa-black-tie mr-2" aria-hidden="true"></i></span>
-                      <span class="ft-val">{{item?.JobPost}}</span>
-                  </span>
-                  <span class="col-wrap">
+              <span class="ft-val">{{item?.JobPost}}</span>
+              </span>
+              <span class="col-wrap">
                       <span class="ft-text" title="Password"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i></span>
-                      <span class="ft-val">{{item?.Password}}</span>
-                  </span>
-                </span>
-              </p>
+              <span class="ft-val">{{item?.Password}}</span>
+              </span>
+              </span>
+            </p>
             <p><span class="ft-text" title="Technical Skills"><i class="fa fa-graduation-cap mr-1" aria-hidden="true"></i></span>
               <span class="ft-val">{{item?.TechnicalSkill}}</span></p>
-          
+
             <!-- <a class="view-details" (click)="showPopUp(imageModalTemplate, item)">View Details</a> -->
           </div>
           <div class="content-footer">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" [(ngModel)]="item.IsAdmin" [class.disabled]="isDisabled(item)" aria-label="Checkbox for following text input">
+                </div>
+              </div>
+              <label class="mb-0 ml-2 mt-1">Make user admin</label>
+            </div>
+
             <div class="btn-wrap">
               <span class="reject-wrap">
                   <a class="view-details" (click)="reject(item?.ID)" [class.disabled]="isDisabled(item)">Reject</a>
@@ -56,7 +65,7 @@
               <span class="approve-wrap">
                   <a class="view-details" (click)="approve(item?.ID)" [class.disabled]="isDisabled(item)">Approve</a>
               </span>
-              
+
             </div>
           </div>
         </div>

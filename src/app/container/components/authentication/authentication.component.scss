@@ -10,6 +10,21 @@
     .row{
         flex: 1;
     }
+    
+}
+.btn-form-group{
+    display: flex;
+
+    p,
+    .btnSubmit{
+        flex: 1;
+    }
+    p{
+        color: #7171db;
+        font-weight: bold;
+        font-size: 13px;
+        text-decoration: underline;
+    }
 }
 .login-form-1{
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
@@ -137,5 +152,9 @@
     }
     .form-group{
         position: relative;
+
+        label{
+            color: #7c8389;
+        }
     }
 }
