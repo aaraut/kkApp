@@ -25,7 +25,7 @@ export class ApproveRejectComponent implements OnInit {
     const url1 = "http://www.kolhapuritians.com/api/register?value=P";
     const url2 = "http://www.kolhapuritians.com/api/register?value=A";
     const url3 = "http://www.kolhapuritians.com/api/register?value=R";
-
+this.allTableData=[];
     forkJoin(
       this.apiCallService.callGetApi(url1),
       this.apiCallService.callGetApi(url2),
@@ -71,7 +71,7 @@ export class ApproveRejectComponent implements OnInit {
       Operation:"PUT",
       RegistrationId:obj[0].ID
     };
-    this.apiCallService.callPutApi(url, param).subscribe(
+    this.apiCallService.callPostApi(url, param).subscribe(
       data => {
         this.getStatus();
         this.openSnackBar("User Approved Successfully", "OK");
