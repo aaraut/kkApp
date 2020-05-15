@@ -16,6 +16,7 @@ export class TraingsComponent implements OnInit {
   selectedItem: any = {};
   itemToDelete = {};
   timeArray = [];
+  minuteArray = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
   constructor(
     private modalService: BsModalService,
     private apiCallService: ApiCallService,
@@ -35,7 +36,9 @@ export class TraingsComponent implements OnInit {
     Details: "",
     Venue: "",
     StartTime: "",
-    EndTime: ''
+    EndTime: '',
+    StartTimeMin: '',
+    EndTimeMin: ''
   };
   ngOnInit() {
     this.setTime();
@@ -54,7 +57,6 @@ export class TraingsComponent implements OnInit {
     const url = "http://kolhapuritians.com/api/training";
     this.apiCallService.callGetApi(url).subscribe(
       data => {
-        console.log("trainings", data);
         this.list = data;
       },
       error => {
@@ -73,8 +75,8 @@ export class TraingsComponent implements OnInit {
       Duration: this.newTraining["Duration"],
       Details: this.newTraining["Details"],
       Venue: this.newTraining["Venue"],
-      StartTime: this.newTraining["StartTime"],
-      EndTime: this.newTraining["EndTime"],
+      StartTime: this.newTraining["StartTime"] + ':'+ this.newTraining['StartTimeMin'],
+      EndTime: this.newTraining["EndTime"] + ':'+ this.newTraining['EndTimeMin'],
     };
     const url = "http://www.kolhapuritians.com/api/training";
     this.apiCallService.callPostApi(url, obj).subscribe(
@@ -89,7 +91,9 @@ export class TraingsComponent implements OnInit {
           Details: "",
           Venue: "",
           StartTime: "",
-          EndTime: ''
+          EndTime: '',
+          StartTimeMin: '',
+          EndTimeMin: ''
         };
         this.openSnackBar("Training Added Successfully!", "OK");
       },
@@ -152,8 +156,9 @@ export class TraingsComponent implements OnInit {
   }
 
   checkIfUserIsAdmin() {
-    if (this.local.get("admin") != undefined) {
-      return true;
+    if(this.local.get('admin') != undefined) {
+      const obj = this.local.get('admin');
+      return obj['isAdmin'];
     }
     return false;
   }

@@ -223,22 +223,20 @@
         </div>
         <div class="contact-wrapper">
             <div class="cw-lhs">
+                <label>Details: </label>
+            </div>
+            <div class="cw-rhs">
+                <input type="text" [(ngModel)]="newTraining.Details" />
+            </div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="cw-lhs">
                 <label>Venue: </label>
             </div>
             <div class="cw-rhs">
                 <input type="text" [(ngModel)]="newTraining.Venue" />
             </div>
         </div>
-        <div class="contact-wrapper">
-            <div class="cw-lhs">
-                <label>Details: </label>
-            </div>
-            <div class="cw-rhs">
-                <textarea class="training" [(ngModel)]="newTraining.Details"></textarea>
-                <!-- <input type="text"  [(ngModel)]="newTraining.Details"/> -->
-            </div>
-        </div>
-
     </div>
     <div class="modal-footer mt-4">
         <button type="button" class="btn btn-primary mr-2" (click)="saveData()">Submit</button>

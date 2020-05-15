@@ -31,7 +31,6 @@ export class ApproveRejectComponent implements OnInit {
       this.apiCallService.callGetApi(url2),
       this.apiCallService.callGetApi(url3)
     ).subscribe(response => {
-      console.log("call1Response", response);
       const fobj: any = response[0];
       const fobj1: any = response[1];
       const fobj2: any = response[2];
@@ -68,7 +67,9 @@ export class ApproveRejectComponent implements OnInit {
       Organisation: obj[0].Organisation,
       Password: obj[0].Password,
       ApprovalStatus: "A",
-      IsAdmin: obj[0].IsAdmin
+      IsAdmin: obj[0].IsAdmin,
+      Operation:"PUT",
+      RegistrationId:obj[0].ID
     };
     this.apiCallService.callPutApi(url, param).subscribe(
       data => {
@@ -94,9 +95,11 @@ export class ApproveRejectComponent implements OnInit {
       TechnicalSkill: obj[0].TechnicalSkill,
       Organisation: obj[0].Organisation,
       Password: obj[0].Password,
-      ApprovalStatus: "R"
+      ApprovalStatus: "R",
+      Operation:"PUT",
+      RegistrationId:obj[0].ID
     };
-    this.apiCallService.callPutApi(url, param).subscribe(
+    this.apiCallService.callPostApi(url, param).subscribe(
       data => {
         this.getStatus();
         this.openSnackBar("User Rejected Successfully", "OK");

@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     // this.router.events.subscribe((url:any) => console.log('url', url));
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        console.log("this.router.url", this.router.url);
+
         const urlRoute = this.router.url;
 
         if (urlRoute === "/home") {

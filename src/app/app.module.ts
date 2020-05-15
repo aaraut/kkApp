@@ -18,10 +18,9 @@ import { UnderConstructionComponent } from './container/components/under-constru
 import { TraingsComponent } from './container/components/traings/traings.component';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HeaderComponent } from './common/header/header.component';
-import { AboutUsComponent } from './container/components/about-us/about-us.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, AboutUsComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AngularMaterialModule,

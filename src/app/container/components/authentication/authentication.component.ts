@@ -54,13 +54,13 @@ export class AuthenticationComponent implements OnInit {
     server:false
   };
   constructor(private apiCallService: ApiCallService, public router: Router, private route: ActivatedRoute,
-              public local: LocalStorageService, public session: SessionStorageService) {}
+              public local: LocalStorageService, public session: SessionStorageService,
+              private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.fetchSecurityQuestion();
     this.route.queryParams.subscribe(params => {
         // Defaults to 0 if no query param provided.
-        console.log('params', params);
         if(params.page == 'signup'){
           this.formView = 'signup';
         } else {
@@ -76,7 +76,7 @@ export class AuthenticationComponent implements OnInit {
     '&password=' + this.loginAttr['pwd'];
     this.apiCallService.callGetApi(url).subscribe(data => {
       if(data["ReturnResult"]!== 'Fail'){
-        this.local.set('token', { isValidUser: 1, UserName: data['ReturnResult']['UserName'] }, 5000, 's');
+        this.local.set('token', { isValidUser: 1, Name: data['Name'] }, 5000, 's');
         this.local.set('admin', { isAdmin: data['IsAdmin'] }, 5000, 's')
         const tempVar = this.local.get('redirectTo');
         if(tempVar != undefined && tempVar != null && 
@@ -168,7 +168,11 @@ export class AuthenticationComponent implements OnInit {
           SecurityAnswer: ''
         };
         this.formView = 'login';
-        this.router.navigate(['/home']);
+        this.openSnackBar("Registration has been completed, Please wait till admin approves your request !", "OK");
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 6000);
+        
       }, error => {
         this.signUpError.something = true;
         this.signUpError.errorPresent = true;
@@ -203,7 +207,7 @@ export class AuthenticationComponent implements OnInit {
     if(this.security.email == '' || this.security.SecurityQuestionId == 0 || this.security.SecurityAnswer == ''){
       this.security.mandatory = true;
     } else {
-      const url = 'http://kolhapuritians.com/api/security';
+      const url = 'http://kolhapuritians.com/api/register';
       const obj = {
         Email: this.security.email,
         SecurityQuestionId: this.security.SecurityQuestionId,
@@ -231,7 +235,7 @@ export class AuthenticationComponent implements OnInit {
       this.password.error = true;
       this.password.mismatch = true;
     } else {
-      const url = 'http://kolhapuritians.com/api/security';
+      const url = 'http://kolhapuritians.com/api/register';
       const obj = {
         Email: this.security.email,
         Password: this.password.confirm,
@@ -248,5 +252,10 @@ export class AuthenticationComponent implements OnInit {
         this.password.server = true;
       })
     }
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 5000
+    });
   }
 }

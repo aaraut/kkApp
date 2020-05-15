@@ -1,6 +1,11 @@
 .page-banner {
   min-height: 375px;
   background: url("/assets/img/v2/about1.jpg") 35% -120.1px repeat scroll transparent;
+
+  @media (max-width: 900px) {
+    min-height: 600px;
+    background: url("/assets/img/v2/about1.jpg") 82% -120.1px repeat scroll transparent;
+  }
 }
 .banner-overlay {
   position: absolute;
@@ -18,10 +23,10 @@
 }
 .baner-caption {
   position: absolute;
-  top: 10%;
+  top: 10px;
   color: #8a83b1;
   z-index: 2;
-  width: 35%;
+  width: 50%;
   text-align: center;
   left: 15%;
   font-size: 2rem;
@@ -112,4 +117,80 @@
       margin-bottom: 5px;
       font-weight: bold;
     }
+}
+.section-heading{
+  text-align: center;
+  padding-top: 25px;
+  color: #6ec9f7;
+}
+.section-3{
+  .img-block{
+    background-image: url('/assets/img/v2/bg-black.jpg')
+}
+  h1{
+      text-align: center;
+      padding-top: 25px;
+      color: #6ec9f7;
+  }
+  p{
+      text-align: center;
+      color: whitesmoke;
+      font-size: 14px;
+  }
+  .note{
+      margin-bottom: 20px;
+  }
+  .img-wrap{
+      text-align: center;
+  }
+  .content-holder{
+      border: 1px solid #4c4d4e;
+      padding: 20px;
+      border-top-left-radius: 500px;
+      border-top-right-radius: 500px;
+      min-height: 335px;
+  }
+  .sec3-img{
+    width: 100px;
+  }
+}
+.section-2{
+  margin-bottom: 20px;
+  h1{
+      text-align: center;
+      margin-top: 25px;
+      span{
+          font-weight: bold;
+          color: #6ec9f7;
+      }
+  }
+  p{
+      text-align: center;
+  }
+
+  .icon-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+  }
+  .icon-col{
+      text-align: center;
+  }
+  .icon-cust{
+      font-size: 50px;
+      color: #6ec9f7;
+  }
+  @media (max-width: 992px) {
+      .people-img{
+          // display: none;
+      }
+
+     
+  }
+  @media (max-width: 575px) {
+    .highlight{
+      display: block;
+    }
+  }
+  
 }

@@ -1,3 +1,4 @@
+import { AboutUsComponent } from './../container/components/about-us/about-us.component';
 import { TraingsComponent } from './../container/components/traings/traings.component';
 import { UnderConstructionComponent } from './../container/components/under-construction/under-construction.component';
 import { ApproveRejectComponent } from './../container/components/approve-reject/approve-reject.component';
@@ -25,7 +26,7 @@ import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [ContainerComponent, SectionOneComponent,HomeComponent,ListingComponent,TraingsComponent,
-    PostingComponent, AuthenticationComponent, ApproveRejectComponent, UnderConstructionComponent],
+    PostingComponent, AuthenticationComponent, ApproveRejectComponent, UnderConstructionComponent, AboutUsComponent],
   imports: [
     AngularMaterialModule,
     BrowserAnimationsModule,

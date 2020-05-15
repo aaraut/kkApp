@@ -194,8 +194,9 @@ export class PostingComponent implements OnInit {
   }
 
   checkIfUserIsAdmin() {
-    if (this.local.get("admin") != undefined) {
-      return true;
+    if(this.local.get('admin') != undefined) {
+      const obj = this.local.get('admin');
+      return obj['isAdmin'];
     }
     return false;
   }

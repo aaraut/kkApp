@@ -61,10 +61,10 @@
                             </p>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="newPassword" placeholder="New Password *" [(ngModel)]="password.new" />
+                            <input type="password" class="form-control" name="newPassword" placeholder="New Password *" [(ngModel)]="password.new" />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="confirmPassword" placeholder="Confirm Password *" [(ngModel)]="password.confirm"
+                            <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password *" [(ngModel)]="password.confirm"
                             />
                         </div>
                         <div class="form-group btn-form-group">
@@ -134,7 +134,7 @@
                         <!-- <label for="exampleFormControlSelect1" class="mb-0">Example select</label> -->
                         <select class="form-control" name="exampleFormControlSelect1" [(ngModel)]="signupAttr.SecurityQuestionId">
                                 <option value="0" disabled>Please Select Security Question</option>
-                              <option *ngFor="let item of securityData" value="item?.ID">{{item?.Question}}</option>
+                              <option *ngFor="let item of securityData" value="{{item?.ID}}">{{item?.Question}}</option>
                               
                             </select>
                         <!-- <input type="text" class="form-control" name="mob" placeholder="Mobile Number *"
@@ -142,7 +142,7 @@
                              <i class="fa fa-times reset-icon float-right" (click)="signupAttr.mob = ''" aria-hidden="true"></i> -->
                     </div>
                     <div class="form-group twofield-rhs">
-                        <input type="text" class="form-control" name="securityAns" placeholder="Security Question Answer *" [(ngModel)]="signupAttr.SecurityAnswer"
+                        <input type="password" class="form-control" name="securityAns" placeholder="Security Question Answer *" [(ngModel)]="signupAttr.SecurityAnswer"
                             [ngClass]="{'invalid': signUpError.mandate && signupAttr.SecurityAnswer == ''}" />
                         <i class="fa fa-times reset-icon float-right" (click)="signupAttr.SecurityAnswer = ''" aria-hidden="true"></i>
                     </div>

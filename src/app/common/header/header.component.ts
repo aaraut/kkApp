@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        console.log("this.router.url", this.router.url);
         this.urlRoute = this.router.url;
       }
     });
@@ -28,13 +27,18 @@ export class HeaderComponent implements OnInit {
   }
   checkIfUserIsAdmin(){
     if(this.local.get('admin') != undefined) {
-      return true;
+      const obj = this.local.get('admin');
+      return obj['isAdmin'];
     }
     return false;
   }
 
   getUserName() {
-    return 'Alekh'
+    if(this.local.get('token') != undefined) {
+      const obj = this.local.get('token');
+      return obj['Name'].split(' ')[0];
+    }
+    return 'User'
   }
 
   logout(){
