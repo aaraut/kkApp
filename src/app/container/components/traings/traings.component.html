@@ -98,7 +98,7 @@
                     <p class="table-label">Start Date</p>
                 </div>
                 <div class="col-8">
-                    <p class="table-value">{{selectedItem?.StartDate}}</p>
+                    <p class="table-value">{{selectedItem?.StartDate | date:'d MMM y'}}</p>
                 </div>
             </div>
             <div class="row cust-table-row">
@@ -106,7 +106,7 @@
                     <p class="table-label">End Date</p>
                 </div>
                 <div class="col-8">
-                    <p class="table-value">{{selectedItem?.EndDate}}</p>
+                    <p class="table-value">{{selectedItem?.EndDate | date:'d MMM y'}}</p>
                 </div>
             </div>
             <div class="row cust-table-row">
@@ -114,7 +114,7 @@
                     <p class="table-label">Time</p>
                 </div>
                 <div class="col-8">
-                    <p class="table-value">{{selectedItem?.Time}}</p>
+                    <p class="table-value">{{selectedItem?.StartTime}} - {{selectedItem?.EndTime}}</p>
                 </div>
             </div>
             <div class="row cust-table-row">
@@ -167,11 +167,11 @@
                 </div>
                 <div class="cw-rhs d-flex">
                     <select class="form-control" name="exampleFormControlSelect1" [(ngModel)]="newTraining.StartTime">
-                        <option *ngFor="let item of timeArray" value="item">{{item}}</option>
+                        <option *ngFor="let item of timeArray" value="{{item}}">{{item}}</option>
                         
                     </select>
                     <select class="form-control ml-3" name="exampleFormControlSelect2" [(ngModel)]="newTraining.StartTimeMin">
-                            <option *ngFor="let item of minuteArray" value="item">{{item}}</option>
+                            <option *ngFor="let item of minuteArray" value="{{item}}">{{item}}</option>
                             
                         </select>
                 </div>
@@ -193,11 +193,11 @@
                 </div>
                 <div class="cw-rhs d-flex">
                     <select class="form-control" name="exampleFormControlSelect3" [(ngModel)]="newTraining.EndTime">
-                        <option *ngFor="let item of timeArray" value="item">{{item}}</option>
+                        <option *ngFor="let item of timeArray" value="{{item}}" [selected]="item==00">{{item}}</option>
                         
                     </select>
                     <select class="form-control ml-3" name="exampleFormControlSelect4" [(ngModel)]="newTraining.EndTimeMin">
-                        <option *ngFor="let item of minuteArray" value="item">{{item}}</option>
+                        <option *ngFor="let item of minuteArray" value="{{item}}" [selected]="item==00">{{item}}</option>
                         
                     </select>
                 </div>
