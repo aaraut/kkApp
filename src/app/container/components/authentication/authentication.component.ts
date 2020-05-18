@@ -105,6 +105,15 @@ export class AuthenticationComponent implements OnInit {
         if(data['EmailIdExist'] == 'Success'){
           this.callRegisterApi();
         }
+        else
+        {
+          this.openSnackBar("Registration with same EmailId is already done.Please login", "OK");
+          
+          setTimeout(() => {
+            this.formView = 'login';
+          }, 6000);
+         
+        }
       }, error => {
         this.signUpError.server = true;
       })
@@ -255,7 +264,7 @@ export class AuthenticationComponent implements OnInit {
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      duration: 5000
+      duration: 10000
     });
   }
 }
