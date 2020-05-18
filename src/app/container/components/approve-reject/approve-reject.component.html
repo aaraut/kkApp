@@ -62,10 +62,10 @@
 
               <div class="btn-wrap">
                 <span class="reject-wrap">
-                          <a class="view-details" (click)="reject(item?.ID)" [class.disabled]="isDisabled(item)">Reject</a>
+                          <a class="view-details" style="cursor: pointer;" (click)="reject(item?.ID)" [class.disabled]="isDisabled(item)">Reject</a>
                       </span>
                 <span class="approve-wrap">
-                          <a class="view-details" (click)="approve(item?.ID)" [class.disabled]="isDisabled(item)">Approve</a>
+                          <a class="view-details" style="cursor: pointer;" (click)="approve(item?.ID)" [class.disabled]="isDisabled(item)">Approve</a>
                       </span>
 
               </div>
@@ -113,7 +113,7 @@
                             <span class="ft-text" title="Designation"><i class="fa fa-black-tie mr-2" aria-hidden="true"></i></span>
                 <span class="ft-val">{{item?.JobPost}}</span>
                 </span>
-                <span class="col-wrap">
+                <span class="col-wrap" style="display: none;">
                             <span class="ft-text" title="Password"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i></span>
                 <span class="ft-val">{{item?.Password}}</span>
                 </span>
@@ -152,7 +152,7 @@
     <h2 class="mt-4">Rejected Users</h2>
     <div class="row">
       <ng-container *ngFor="let item of allTableData;let i = index;">
-        <div class="col-12 col-md-4 post-block" *ngIf="item.ApprovalStatus == 'A'">
+        <div class="col-12 col-md-4 post-block" *ngIf="item.ApprovalStatus == 'R'">
           <div class="item-wrap item-without-footer">
             <div class="logo-part">
               <span class="logo-wrap">

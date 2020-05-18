@@ -53,12 +53,13 @@ export class PostingComponent implements OnInit {
       const reader = new FileReader();
 
       reader.onload = this.handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(file);
+      reader.readAsDataURL(file);
     }
   }
 
   handleReaderLoaded(e) {
-    this.base64textString.push(btoa(e.target.result));
+    
+    this.base64textString.push(e.target.result);
   }
   fetchPosting() {
     this.apiCallService.getPostings().subscribe(
