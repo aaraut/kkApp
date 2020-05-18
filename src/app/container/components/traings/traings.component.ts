@@ -16,6 +16,7 @@ export class TraingsComponent implements OnInit {
   selectedItem: any = {};
   itemToDelete = {};
   timeArray = [];
+  minDate =new Date();
   minuteArray = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
   constructor(
     private modalService: BsModalService,
@@ -32,13 +33,12 @@ export class TraingsComponent implements OnInit {
     Subject: "",
     StartDate: "",
     EndDate: "",
-    Duration: "",
     Details: "",
     Venue: "",
-    StartTime: "",
-    EndTime: '',
-    StartTimeMin: '',
-    EndTimeMin: ''
+    StartTime: "00",
+    EndTime: '00',
+    StartTimeMin: '00',
+    EndTimeMin: '00'
   };
   ngOnInit() {
     this.setTime();
@@ -68,39 +68,42 @@ export class TraingsComponent implements OnInit {
     this.modalRef = this.modalService.show(template, this.config);
   }
   saveData() {
-    const obj = {
-      Subject: this.newTraining["Subject"],
-      StartDate: this.newTraining["StartDate"],
-      EndDate: this.newTraining["EndDate"],
-      Duration: this.newTraining["Duration"],
-      Details: this.newTraining["Details"],
-      Venue: this.newTraining["Venue"],
-      StartTime: this.newTraining["StartTime"] + ':'+ this.newTraining['StartTimeMin'],
-      EndTime: this.newTraining["EndTime"] + ':'+ this.newTraining['EndTimeMin'],
-    };
-    const url = "http://www.kolhapuritians.com/api/training";
-    this.apiCallService.callPostApi(url, obj).subscribe(
-      data => {
-        this.modalRef.hide();
-        this.getAllList();
-        this.newTraining = {
-          Subject: "",
-          StartDate: "",
-          EndDate: "",
-          Duration: "",
-          Details: "",
-          Venue: "",
-          StartTime: "",
-          EndTime: '',
-          StartTimeMin: '',
-          EndTimeMin: ''
-        };
-        this.openSnackBar("Training Added Successfully!", "OK");
-      },
-      error => {
-        this.openSnackBar("Something went wrong!", "OK");
-      }
-    );
+    if(this.validateForm()){
+      const obj = {
+        Subject: this.newTraining["Subject"],
+        StartDate: this.newTraining["StartDate"],
+        EndDate: this.newTraining["EndDate"],
+        Details: this.newTraining["Details"],
+        Venue: this.newTraining["Venue"],
+        StartTime: this.newTraining["StartTime"] + ':'+ this.newTraining['StartTimeMin'],
+        EndTime: this.newTraining["EndTime"] + ':'+ this.newTraining['EndTimeMin'],
+      };
+      const url = "http://www.kolhapuritians.com/api/training";
+      this.apiCallService.callPostApi(url, obj).subscribe(
+        data => {
+          this.modalRef.hide();
+          this.getAllList();
+          this.newTraining = {
+            Subject: "",
+            StartDate: "",
+            EndDate: "",
+            Details: "",
+            Venue: "",
+            StartTime: "00",
+            EndTime: '00',
+            StartTimeMin: '00',
+            EndTimeMin: '00'
+          };
+          this.openSnackBar("Training Added Successfully!", "OK");
+        },
+        error => {
+          this.openSnackBar("Something went wrong!", "OK");
+        }
+      );
+    } else {
+      this.openSnackBar("Please fill all fields", "OK");
+    }
+    
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
@@ -161,5 +164,22 @@ export class TraingsComponent implements OnInit {
       return obj['isAdmin'];
     }
     return false;
+  }
+
+  validateForm() {
+    if(this.newTraining["Subject"] =='' ||
+    this.newTraining["StartDate"] == '' || 
+    this.newTraining["EndDate"] == ''||
+    this.newTraining["Details"] == ''||
+    this.newTraining["Venue"] == '' ){
+      return false;
+    }
+    return true;
+  }
+  getSubject(sub) {
+    if (sub.length > 30) {
+      return sub.substring(0, 30) + "...";
+    }
+    return sub;
   }
 }

@@ -5,6 +5,10 @@
   width: calc(100% - 40px);
   overflow-y: scroll;
 
+  .title-box{
+    font-size: 1.2rem;    
+  }
+
   .list-item-box {
     border: 1px solid #cccccc;
     box-shadow: 0 0 2px #cccccc;
@@ -157,7 +161,7 @@
   
   .item-wrap {
     display: flex;
-    height: 430px;
+    height: 460px;
     border: 2px solid #e8ecec;
     flex-direction: column;
     padding: 20px;

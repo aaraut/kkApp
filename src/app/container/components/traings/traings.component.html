@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="content-part mt-4">
-                        <h4 class="mt-2">{{item?.Subject}}</h4>
+                        <h4 class="mt-2 title-box">{{getSubject(item?.Subject)}}</h4>
 
                         <p class="content-desc">{{getItemDetails(item?.Details)}}</p>
                     </div>
@@ -117,14 +117,14 @@
                     <p class="table-value">{{selectedItem?.StartTime}} - {{selectedItem?.EndTime}}</p>
                 </div>
             </div>
-            <div class="row cust-table-row">
+            <!-- <div class="row cust-table-row">
                 <div class="col-4">
                     <p class="table-label">Duration</p>
                 </div>
                 <div class="col-8">
                     <p class="table-value">{{selectedItem?.Duration}}</p>
                 </div>
-            </div>
+            </div> -->
             <div class="row cust-table-row">
                 <div class="col-4">
                     <p class="table-label">Venue</p>
@@ -158,7 +158,7 @@
                     <label>Start Date: </label>
                 </div>
                 <div class="cw-rhs">
-                    <input class="form-control" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.StartDate" [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
+                    <input class="form-control" readonly  [minDate]="minDate" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.StartDate" [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
                 </div>
             </div>
             <div class="two-col-rhs ml-4">
@@ -184,7 +184,7 @@
                     <label>End Date: </label>
                 </div>
                 <div class="cw-rhs">
-                    <input class="form-control" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.EndDate" [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
+                    <input class="form-control" readonly  [minDate]="minDate" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.EndDate" [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
                 </div>
             </div>
             <div class="two-col-rhs ml-4">
@@ -213,14 +213,14 @@
 
             </div>
         </div> -->
-        <div class="contact-wrapper">
+        <!-- <div class="contact-wrapper">
             <div class="cw-lhs">
                 <label>Duration: </label>
             </div>
             <div class="cw-rhs">
                 <input type="text" [(ngModel)]="newTraining.Duration" />
             </div>
-        </div>
+        </div> -->
         <div class="contact-wrapper">
             <div class="cw-lhs">
                 <label>Venue: </label>

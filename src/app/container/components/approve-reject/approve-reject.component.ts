@@ -25,7 +25,7 @@ export class ApproveRejectComponent implements OnInit {
     const url1 = "http://www.kolhapuritians.com/api/register?value=P";
     const url2 = "http://www.kolhapuritians.com/api/register?value=A";
     const url3 = "http://www.kolhapuritians.com/api/register?value=R";
-this.allTableData=[];
+    this.allTableData=[];
     forkJoin(
       this.apiCallService.callGetApi(url1),
       this.apiCallService.callGetApi(url2),

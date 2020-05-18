@@ -13,25 +13,25 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item" [ngClass]="{'active': urlRoute == '' || urlRoute == '/home'}">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" [ngClass]="{'active': urlRoute == '' || urlRoute == '/home'}">
                             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item" [ngClass]="{'active': urlRoute == '/admin'}">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" [ngClass]="{'active': urlRoute == '/admin'}">
                             <a class="nav-link" *ngIf="checkIfUserIsAdmin()" href="#/admin">Admin Panel</a>
                         </li>
-                        <li class="nav-item" [ngClass]="{'active': urlRoute == '/posting'}">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" [ngClass]="{'active': urlRoute == '/posting'}">
                             <a class="nav-link" href="#/posting">Job Posting</a>
                         </li>
-                        <li class="nav-item" [ngClass]="{'active': urlRoute == '/seminar'}">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" [ngClass]="{'active': urlRoute == '/seminar'}">
                             <a class="nav-link" href="#/seminar" tabindex="-1" aria-disabled="true">Seminar/Trainings</a>
                         </li>
-                        <li class="nav-item" [ngClass]="{'active': urlRoute == '/company'}">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" [ngClass]="{'active': urlRoute == '/company'}">
                             <a class="nav-link" href="#/company">Referances</a>
                         </li>
-                        <li class="nav-item" [ngClass]="{'active': urlRoute == '/about-us'}">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" [ngClass]="{'active': urlRoute == '/about-us'}">
                             <a class="nav-link" href="#/about-us">Our Story</a>
                         </li>
-                        <li class="nav-item" *ngIf="!checkIfUserIsLoggedIn()" [ngClass]="{'active': urlRoute == '/login?page=signup'}">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse" *ngIf="!checkIfUserIsLoggedIn()" [ngClass]="{'active': urlRoute == '/login?page=signup'}">
                             <a class="nav-link" href="#/login?page=signup">Sign up</a>
                         </li>
                     </ul>
