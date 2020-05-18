@@ -102,7 +102,7 @@ export class AuthenticationComponent implements OnInit {
     if(this.signupAttr.email!= ''){
       const tempUrl = 'http://www.kolhapuritians.com/api/Register?value=valid&emailId=' + this.signupAttr.email;
       this.apiCallService.callGetApi(tempUrl).subscribe(data => {
-        if(data['ReturnResult'] == 'Success'){
+        if(data['EmailIdExist'] == 'Success'){
           this.callRegisterApi();
         }
       }, error => {
