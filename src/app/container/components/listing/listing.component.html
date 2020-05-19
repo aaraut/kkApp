@@ -26,7 +26,7 @@
                     <div class="content-footer">
                         <p><span class="ft-text">Company Name: </span>
                             <span class="ft-val">{{item?.CompanyName}}</span></p>
-                        <p><span class="ft-text">Phone Number: </span>
+                        <p *ngIf="checkIfUserIsAdmin()"><span class="ft-text">Phone Number: </span>
                             <span class="ft-val">{{item?.Mobile}}</span></p>
                         <p><span class="ft-text">Email: </span>
                             <span class="ft-val">{{item?.EmailAddress}}</span></p>

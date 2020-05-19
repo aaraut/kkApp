@@ -107,7 +107,7 @@ export class AuthenticationComponent implements OnInit {
         }
         else
         {
-          this.openSnackBar("Registration with same EmailId is already done.Please login", "OK");
+          this.openSnackBar("Alert!!!!! Already Register Email Id.Please use another Email Id", "OK");
           
           setTimeout(() => {
             this.formView = 'login';
