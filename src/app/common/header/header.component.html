@@ -37,8 +37,8 @@
                     </ul>
 
                     <button class="btn btn-outline-success ml-2 my-sm-0" [ngClass]="{'active-btn': urlRoute == '/login'}" (click)="login()" *ngIf="!checkIfUserIsLoggedIn()"
-                        type="button">Login</button>
-                    <button class="btn btn-outline-danger ml-2 my-sm-0" (click)="logout()" *ngIf="checkIfUserIsLoggedIn()" type="button">Logout</button>
+                        type="button" data-toggle="collapse" data-target=".navbar-collapse">Login</button>
+                    <button class="btn btn-outline-danger ml-2 my-sm-0" data-toggle="collapse" data-target=".navbar-collapse" (click)="logout()" *ngIf="checkIfUserIsLoggedIn()" type="button">Logout</button>
 
                     <div class="user-icon ml-2" *ngIf="checkIfUserIsLoggedIn()">
                         <img class="user-img" src="../../assets/img/v2/user.png" />
