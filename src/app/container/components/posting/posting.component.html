@@ -11,7 +11,18 @@
 <div class="section-2 mb-4">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-3 post-block" *ngFor="let item of postDetails;let i = index;">
+            <div class="col-12">
+                <div class="search-box">
+                    <span class="wrap">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <input class="form-control" [(ngModel)]="searchString" type="search" placeholder="Search" aria-label="Search">
+                    </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 col-md-3 post-block" *ngFor="let item of postDetails|filter:searchString">
                 <div class="item-wrap">
                     <span style="cursor: pointer;" class="delete-post" title="Delete Job Post" *ngIf="checkIfUserIsAdmin()" (click)="deletePost(deletetemplate, item)">
                                 <i class="fa fa-trash" aria-hidden="true"></i>

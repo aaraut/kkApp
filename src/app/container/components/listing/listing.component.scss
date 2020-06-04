@@ -179,7 +179,24 @@
       font-size: 18px;
     }
   }
-
+  .search-box{
+    display: flex;
+    justify-content: flex-end;
+    .wrap{
+      max-width: 300px;
+      position: relative;
+      width: 100%;
+      .fa{
+        position: absolute;
+        top: 9px;
+        left: 10px;
+        color: #c1c1c1;
+      }
+      .form-control{
+        padding-left: 30px;
+      }
+    }
+  }
   .logo-part {
     position: absolute;
     top: -35px;

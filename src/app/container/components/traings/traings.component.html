@@ -10,7 +10,18 @@
 <div class="section-2 mb-4">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-4 post-block" *ngFor="let item of list;let i = index;">
+            <div class="col-12">
+                <div class="search-box">
+                    <span class="wrap">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input class="form-control" [(ngModel)]="searchString" type="text" placeholder="Search" aria-label="Search">
+                </span>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 post-block" *ngFor="let item of list|filter:searchString;let i = index;">
                 <div class="item-wrap">
                     <div class="logo-part">
                         <span class="logo-wrap">
@@ -158,7 +169,8 @@
                     <label>Start Date: </label>
                 </div>
                 <div class="cw-rhs">
-                    <input class="form-control" readonly  [minDate]="minDate" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.StartDate" [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
+                    <input class="form-control" readonly [minDate]="minDate" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.StartDate"
+                        [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
                 </div>
             </div>
             <div class="two-col-rhs ml-4">
@@ -184,7 +196,8 @@
                     <label>End Date: </label>
                 </div>
                 <div class="cw-rhs">
-                    <input class="form-control" readonly  [minDate]="minDate" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.EndDate" [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
+                    <input class="form-control" readonly [minDate]="minDate" #datepickerFull="bsDatepicker" bsDatepicker [(ngModel)]="newTraining.EndDate"
+                        [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY', containerClass: 'theme-red' }">
                 </div>
             </div>
             <div class="two-col-rhs ml-4">

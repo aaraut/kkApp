@@ -34,6 +34,7 @@ export class PostingComponent implements OnInit {
   };
   base64textString = [];
   jobItemToDelete = {};
+  searchString = '';
   constructor(
     private apiCallService: ApiCallService,
     private _sanitizer: DomSanitizer,

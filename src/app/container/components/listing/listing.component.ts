@@ -26,7 +26,7 @@ export class ListingComponent implements OnInit {
   };
   listItems: any = [];
   itemToDelete = {};
-
+  searchString = '';
   constructor(
     private modalService: BsModalService,
     public local: LocalStorageService,

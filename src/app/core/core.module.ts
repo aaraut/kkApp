@@ -23,6 +23,7 @@ import { MAT_DATE_LOCALE } from '@angular/material';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { CarouselModule, ModalModule, BsDatepickerModule } from "ngx-bootstrap";
 import { FormsModule } from "@angular/forms";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [ContainerComponent, SectionOneComponent,HomeComponent,ListingComponent,TraingsComponent,
@@ -37,7 +38,8 @@ import { FormsModule } from "@angular/forms";
     BsDatepickerModule.forRoot(),
 
     ModalModule.forRoot(),
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   exports: [ContainerComponent]
 })
